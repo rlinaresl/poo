@@ -1,6 +1,7 @@
 package dominio;
 
 public class Cliente {
+	/* Cliente */
 
 	private String codigo;	
 	private String nombres;

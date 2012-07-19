@@ -1,7 +1,7 @@
 package dominio;
 
 import java.util.Date;
-
+	/* VentaCabe */
 public class VentaCabe {
 
 	private int codigo;

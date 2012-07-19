@@ -5,6 +5,7 @@ import org.junit.Test;
 import dominio.Usuario;
 
 public class UsuarioTest {
+	/* UsuarioTest */
 
     @Test
     public void testMetodosBasicos() {

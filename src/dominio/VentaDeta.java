@@ -1,7 +1,7 @@
 package dominio;
 
 public class VentaDeta {
-	
+	/* VentaDeta */
 	private VentaCabe venta;
 	private String concepto;
 	private double igv;

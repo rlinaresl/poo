@@ -1,6 +1,7 @@
 package dominio;
 
 public class Usuario {
+	/* Usuario */
 
 	private String correo;
 	private String clave;
