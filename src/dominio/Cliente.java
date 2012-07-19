@@ -6,8 +6,8 @@ public class Cliente {
 	private String codigo;	
 	private String nombres;
 	private String apellidos;
-	private int codigo_tipo_documento;
-	private String numero_documento;	
+	private int codigoTipoDocumento;
+	private String numeroDocumento;	
 	private String telefono;	
 	private String correo;    
 	private String direccion;    
@@ -15,13 +15,13 @@ public class Cliente {
 	private String estado;   
 	private String pais;    
 		
-	public Cliente(String codigo, String nombres, String apellidos, int codigo_tipo_documento, String numero_documento,String telefono, String correo, String direccion, 
+	public Cliente(String codigo, String nombres, String apellidos, int codigoTipoDocumento, String numeroDocumento,String telefono, String correo, String direccion, 
 			String ciudad, String estado, String pais) {
 		setCodigo(codigo);
 		setNombres(nombres);
 		setApellidos(apellidos);
-		setCodigo_tipo_documento(codigo_tipo_documento);
-		setNumero_documento(numero_documento);
+		setCodigoTipoDocumento(codigoTipoDocumento);
+		setNumeroDocumento(numeroDocumento);
         setTelefono(telefono);
         setCorreo(correo);
         setDireccion(direccion);
@@ -52,20 +52,20 @@ public class Cliente {
 		this.apellidos = apellidos;
 	}
 
-	public int getCodigo_tipo_documento() {
-		return codigo_tipo_documento;
+	public int getCodigoTipoDocumento() {
+		return codigoTipoDocumento;
 	}
 
-	public void setCodigo_tipo_documento(int codigo_tipo_documento) {
-		this.codigo_tipo_documento = codigo_tipo_documento;
+	public void setCodigoTipoDocumento(int codigoTipoDocumento) {
+		this.codigoTipoDocumento = codigoTipoDocumento;
 	}
 
-	public String getNumero_documento() {
-		return numero_documento;
+	public String getNumeroDocumento() {
+		return numeroDocumento;
 	}
 
-	public void setNumero_documento(String numero_documento) {
-		this.numero_documento = numero_documento;
+	public void setNumeroDocumento(String numeroDocumento) {
+		this.numeroDocumento = numeroDocumento;
 	}
 	public String getTelefono() {
 		return telefono;
