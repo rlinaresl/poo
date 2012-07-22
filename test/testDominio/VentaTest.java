@@ -3,14 +3,16 @@ package testDominio;
 import junit.framework.Assert;
 import org.junit.Test;
 import dominio.Usuario;
+import dominio.VentaCabe;
 
-public class UsuarioTest {
-	/* UsuarioTest */
+public class VentaTest {
 
-    @Test
+	@Test
     public void testMetodosBasicos() {
 
-        Usuario usuario = new Usuario();
+        VentaCabe ventaCabe = new VentaCabe();
+        
+        /*
 
         usuario.setCorreo("micorreo@website.net");
         usuario.setClave("clave");
@@ -18,7 +20,9 @@ public class UsuarioTest {
         
         Assert.assertEquals("micorreo@website.net", usuario.getCorreo());
         Assert.assertEquals("clave", usuario.getClave());
-        Assert.assertTrue(usuario.isFlagTerminosLegales());        
+        Assert.assertTrue(usuario.isFlagTerminosLegales());
+        */        
 
     }
+	
 }

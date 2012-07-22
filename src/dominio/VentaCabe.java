@@ -5,16 +5,16 @@ import java.util.Date;
 public class VentaCabe {
 
 	private int codigo;
-	private int codigo_tipo_documento;//1=dni, 2=ruc
+	private int codigoTipoDocumento;//1=dni, 2=ruc
 	private Cliente cliente;
 	private int codigo_moneda;//1=soles, 2=dolares
 	private Usuario usuario;
-	private String numero_documento;
+	private String numeroDocumento;
 	private String concepto;
 	private Date fecha_emision;
 	private String empresa;
-	private Date fecha_vencimiento;
-	private Date fecha_pago;
+	private Date fechaVencimiento;
+	private Date fechaPago;
 	private int estado;//1=nuevo, 2=anulada, 3=cancelada
 	
 	
@@ -25,11 +25,11 @@ public class VentaCabe {
 	public void setCodigo(int codigo) {
 		this.codigo = codigo;
 	}
-	public int getCodigo_tipo_documento() {
-		return codigo_tipo_documento;
+	public int getCodigoTipoDocumento() {
+		return codigoTipoDocumento;
 	}
-	public void setCodigo_tipo_documento(int codigo_tipo_documento) {
-		this.codigo_tipo_documento = codigo_tipo_documento;
+	public void setCodigoTipoDocumento(int codigoTipoDocumento) {
+		this.codigoTipoDocumento = codigoTipoDocumento;
 	}
 	public Cliente getCliente() {
 		return cliente;
@@ -49,11 +49,11 @@ public class VentaCabe {
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
 	}
-	public String getNumero_documento() {
-		return numero_documento;
+	public String getNumeroDocumento() {
+		return numeroDocumento;
 	}
-	public void setNumero_documento(String numero_documento) {
-		this.numero_documento = numero_documento;
+	public void setNumeroDocumento(String numeroDocumento) {
+		this.numeroDocumento = numeroDocumento;
 	}
 	public String getConcepto() {
 		return concepto;
@@ -73,17 +73,17 @@ public class VentaCabe {
 	public void setEmpresa(String empresa) {
 		this.empresa = empresa;
 	}
-	public Date getFecha_vencimiento() {
-		return fecha_vencimiento;
+	public Date getFechaVencimiento() {
+		return fechaVencimiento;
 	}
-	public void setFecha_vencimiento(Date fecha_vencimiento) {
-		this.fecha_vencimiento = fecha_vencimiento;
+	public void setFechaVencimiento(Date fechaVencimiento) {
+		this.fechaVencimiento = fechaVencimiento;
 	}
-	public Date getFecha_pago() {
-		return fecha_pago;
+	public Date getFechaPago() {
+		return fechaPago;
 	}
-	public void setFecha_pago(Date fecha_pago) {
-		this.fecha_pago = fecha_pago;
+	public void setFechaPago(Date fechaPago) {
+		this.fechaPago = fechaPago;
 	}
 	public int getEstado() {
 		return estado;
