@@ -13,12 +13,16 @@ public class UsuarioTest {
         Usuario usuario = new Usuario();
 
         usuario.setCorreo("micorreo@website.net");
-        usuario.setClave("clave");
-        usuario.setFlagTerminosLegales(true);        
+        usuario.setClave("clave");          
         
         Assert.assertEquals("micorreo@website.net", usuario.getCorreo());
         Assert.assertEquals("clave", usuario.getClave());
-        Assert.assertTrue(usuario.isFlagTerminosLegales());        
+        
+        
+        
 
     }
+    
+    
+    
 }

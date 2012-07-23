@@ -6,6 +6,7 @@ public class Cliente {
 	private String codigo;	
 	private String nombres;
 	private String apellidos;
+	private int tipoCliente;//1=prospecto, 2=contacto, 3=cliente
 	private int codigoTipoDocumento;
 	private String numeroDocumento;	
 	private String telefono;	
