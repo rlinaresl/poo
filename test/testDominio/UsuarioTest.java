@@ -22,7 +22,14 @@ public class UsuarioTest {
         
 
     }
-    
+    @Test
+    public void testInicioDeSesion()
+    {
+    	Usuario usuario = new Usuario();
+    	boolean valor = usuario.validarInformacion("correo@correo.com", "qwerty");
+    	Assert.assertEquals(true, valor);
+    	
+    }
     
     
 }
