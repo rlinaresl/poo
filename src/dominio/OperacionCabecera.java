@@ -1,13 +1,14 @@
 package dominio;
 
 import java.util.Date;
-	/* VentaCabe */
-public class VentaCabe {
+/* OperacionCabecera */
+public class OperacionCabecera {
 
 	private int codigo;
 	private int codigoTipoDocumento;//1=dni, 2=ruc
 	private Cliente cliente;
-	private int codigo_moneda;//1=soles, 2=dolares
+	private int codigoMoneda;//1=soles, 2=dolares
+	private int tipoOperacion;//1=venta, 2=compra
 	private Usuario usuario;
 	private String numeroDocumento;
 	private String concepto;
@@ -37,11 +38,17 @@ public class VentaCabe {
 	public void setCliente(Cliente cliente) {
 		this.cliente = cliente;
 	}
-	public int getCodigo_moneda() {
-		return codigo_moneda;
+	public int getCodigoMoneda() {
+		return codigoMoneda;
 	}
-	public void setCodigo_moneda(int codigo_moneda) {
-		this.codigo_moneda = codigo_moneda;
+	public void setCodigoMoneda(int codigoMoneda) {
+		this.codigoMoneda = codigoMoneda;
+	}
+	public int getTipoOperacion() {
+		return tipoOperacion;
+	}
+	public void setTipoOperacion(int tipoOperacion) {
+		this.tipoOperacion = tipoOperacion;
 	}
 	public Usuario getUsuario() {
 		return usuario;
@@ -91,7 +98,6 @@ public class VentaCabe {
 	public void setEstado(int estado) {
 		this.estado = estado;
 	}
-	
 	
 	
 	

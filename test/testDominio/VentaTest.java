@@ -3,14 +3,14 @@ package testDominio;
 import junit.framework.Assert;
 import org.junit.Test;
 import dominio.Usuario;
-import dominio.VentaCabe;
+import dominio.OperacionCabecera;
 
 public class VentaTest {
 
 	@Test
     public void testMetodosBasicos() {
 
-        VentaCabe ventaCabe = new VentaCabe();
+        OperacionCabecera ventaCabe = new OperacionCabecera();
         
         /*
 
