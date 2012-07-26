@@ -11,12 +11,12 @@ public class OperacionCabecera {
 	private int codigoMoneda;//1=soles, 2=dolares
 	private int tipoOperacion;//1=venta, 2=compra
 	private Usuario usuario;
-	private String numeroDocumento;
-	private String concepto;
+	private String numeroDocumento;	
 	private Date fecha_emision;
 	private String empresa;
 	private Date fechaVencimiento;
 	private Date fechaPago;
+	private OperacionDetalle operacionDetalle;
 	private int estado;//1=nuevo, 2=anulada, 3=cancelada		
 	
     public OperacionCabecera(int codigo,
@@ -25,13 +25,13 @@ public class OperacionCabecera {
 	 int codigoMoneda,
 	 int tipoOperacion,
 	 Usuario usuario,
-	 String numeroDocumento,
-	 String concepto,
+	 String numeroDocumento,	 
 	 Date fecha_emision,
 	 String empresa,
 	 Date fechaVencimiento,
 	 Date fechaPago,
-	 int estado) 
+	 int estado, 
+	 OperacionDetalle operacionDetalle) 
     {
     	
     	this.codigo = codigo;
@@ -40,16 +40,30 @@ public class OperacionCabecera {
     	this.codigoMoneda = codigoMoneda;
     	this.tipoOperacion = tipoOperacion;
     	this.usuario = usuario;
-    	this.numeroDocumento = numeroDocumento;
-    	this.concepto = concepto;
+    	this.numeroDocumento = numeroDocumento;    	
     	this.fecha_emision = fecha_emision;
     	this.empresa = empresa;
     	this.fechaVencimiento = fechaVencimiento;
 		this.fechaPago = fechaPago;
 		this.estado = estado;
+		this.operacionDetalle = operacionDetalle;
         
     }
+    
+    
 	
+	public OperacionDetalle getOperacionDetalle() {
+		return operacionDetalle;
+	}
+
+
+
+	public void setOperacionDetalle(OperacionDetalle operacionDetalle) {
+		this.operacionDetalle = operacionDetalle;
+	}
+
+
+
 	public int getCodigo() {
 		return codigo;
 	}
@@ -92,12 +106,7 @@ public class OperacionCabecera {
 	public void setNumeroDocumento(String numeroDocumento) {
 		this.numeroDocumento = numeroDocumento;
 	}
-	public String getConcepto() {
-		return concepto;
-	}
-	public void setConcepto(String concepto) {
-		this.concepto = concepto;
-	}
+	
 	public Date getFecha_emision() {
 		return fecha_emision;
 	}
