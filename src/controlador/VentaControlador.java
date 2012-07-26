@@ -16,6 +16,7 @@ public class VentaControlador {
 	Util util = new Util();
 	BaseDatos BD = new BaseDatos();
 	
+	/*
 	public static void main(String args[])
 	
 	{
@@ -40,6 +41,7 @@ public class VentaControlador {
         int resultado = ventaCo.crearVentaCabe(ventaCabe);
         System.out.print(resultado);
 	}
+	*/
 		
 	public int crearVentaCabe(OperacionCabecera obj){
 		
@@ -83,7 +85,7 @@ public class VentaControlador {
         	return 0;
         }
 		
-		if (buscarVenta(obj))//Si la venta existe
+		if (buscarVentaCodigo(obj))//Si la venta existe
 		{
         	System.out.println("Venta ya existe");
         	return 0;
@@ -100,19 +102,13 @@ public class VentaControlador {
         	System.out.println("Ingrese concepto");
         	return 0;
         }
-		
-		//"servicio de hosting", 410, 1, 90, 500
-		
 					
 		return 1;	
 		
 	}
+		
 	
-	public int crearVentaDeta(OperacionDetalle obj){
-		return 1;		
-	}
-	
-	public boolean buscarVenta(OperacionCabecera venta)
+	public boolean buscarVentaCodigo(OperacionCabecera venta)
 	{
 		
 		List<OperacionCabecera> listaVentas = BD.devolverOperacion();
@@ -126,7 +122,67 @@ public class VentaControlador {
         return false;
 	}
 	
+	public boolean buscarVentaUsuario(Usuario usuario)
+	{
+		
+		List<OperacionCabecera> listaVentas = BD.devolverOperacion();
+		
+		for (OperacionCabecera item : listaVentas) {
+			
+            if (item.getUsuario().getCodigo() == usuario.getCodigo())
+            	return true;
+            
+        }
+        
+        return false;
+	}
 	
+	public boolean buscarVentaCliente(Cliente cliente)
+	{
+		
+		List<OperacionCabecera> listaVentas = BD.devolverOperacion();
+		
+		for (OperacionCabecera item : listaVentas) {
+			
+            if (item.getCliente().getCodigo() == cliente.getCodigo())
+            	return true;
+            
+        }
+        
+        return false;
+	}
+	
+	
+	public boolean cambiarEstadoVenta(OperacionCabecera venta)
+	{
+		List<OperacionCabecera> listaVentas = BD.devolverOperacion();
+		
+		for (OperacionCabecera item : listaVentas) {
+			
+            if (item.getCodigo() == venta.getCodigo())
+            {
+            	if (item.getEstado() == 1)
+            		return true;
+            }            	
+        }
+        
+        return false;
+	}
+	
+	public OperacionCabecera buscarVenta(int codigo)
+	{
+		
+		List<OperacionCabecera> listaVentas = BD.devolverOperacion();
+		
+		for (OperacionCabecera item : listaVentas) {
+			
+            if (item.getCodigo() == codigo)
+            	return item;
+        }
+        
+        return null;
+        
+	}
 	
 	
 }

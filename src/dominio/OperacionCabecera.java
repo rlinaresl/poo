@@ -19,7 +19,11 @@ public class OperacionCabecera {
 	private OperacionDetalle operacionDetalle;
 	private int estado;//1=nuevo, 2=anulada, 3=cancelada		
 	
-    public OperacionCabecera(int codigo,
+	public OperacionCabecera(){
+		
+	}
+	
+	public OperacionCabecera(int codigo,
 	 int codigoTipoDocumento,
 	 Cliente cliente,
 	 int codigoMoneda,
