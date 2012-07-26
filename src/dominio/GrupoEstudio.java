@@ -136,15 +136,13 @@ public class GrupoEstudio {
 		grupos.add(g4);
 		
 		for (GrupoEstudio item : grupos) {
-			System.out.println(item.getNombre());
-			System.out.println(termino);
+			System.out.println(item.getNombre() + "--" + termino);
             if(item.getNombre() == termino)
             {
-            	cantidad = cantidad ++;
+    			System.out.println("**");
+            	cantidad = cantidad + 1;
             }            	
         }
-		
-		//cantidad = 1;
 		return cantidad;
 	}
 
