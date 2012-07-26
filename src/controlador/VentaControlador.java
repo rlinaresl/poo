@@ -26,15 +26,15 @@ public class VentaControlador {
         Usuario usu = usuarioCo.BuscarUsuario(1);
         
         //ventaCabe = new OperacionCabecera(codigo, codigoTipoDocumento, cliente, codigoMoneda, tipoOperacion, usuario, numeroDocumento, concepto, fecha_emision, empresa, fechaVencimiento, fechaPago, estado)        
-        OperacionCabecera ventaCabe = null;        
+        OperacionCabecera ventaCabe = null;
+        OperacionDetalle ventaDeta = null;
 
-        Date fechaVencimiento = Util.getFecha("10/05/2012");
+        Date fechaVencimiento = Util.getFecha("10/10/2012");
         Date fechaPago = Util.getFecha("10/10/2012");        
-        Date fechaEmision = Util.getFecha("10/06/2012");
+        Date fechaEmision = Util.getFecha("10/10/2012");               
         
-        System.out.println(fechaEmision);
-        
-        ventaCabe = new OperacionCabecera(1, 1, cli, 1, 1, usu, "IN00001", "", fechaEmision, "Solutions Peru Sac", fechaVencimiento, fechaPago, 1);
+        ventaDeta = new OperacionDetalle("servicio de hosting", 410, 1, 90, 500);
+        ventaCabe = new OperacionCabecera(1, 1, cli, 1, 1, usu, "IN00001", fechaEmision, "",fechaVencimiento, fechaPago, 1, ventaDeta);
         
         VentaControlador ventaCo = new VentaControlador();
         int resultado = ventaCo.crearVentaCabe(ventaCabe);
@@ -88,6 +88,21 @@ public class VentaControlador {
         	System.out.println("Venta ya existe");
         	return 0;
         }
+		
+		if (obj.getOperacionDetalle() == null)
+		{
+        	System.out.println("Ingrese detalle");
+        	return 0;
+        }
+		
+		if (obj.getOperacionDetalle().getConcepto() == null || obj.getOperacionDetalle().getConcepto().equals(""))
+		{
+        	System.out.println("Ingrese concepto");
+        	return 0;
+        }
+		
+		//"servicio de hosting", 410, 1, 90, 500
+		
 					
 		return 1;	
 		
