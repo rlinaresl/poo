@@ -9,6 +9,7 @@ import controlador.ClienteControlador;
 import controlador.UsuarioControlador;
 import controlador.VentaControlador;
 import dominio.Cliente;
+import dominio.OperacionDetalle;
 import dominio.Usuario;
 import dominio.OperacionCabecera;
 import dominio.Util;
@@ -29,7 +30,15 @@ public class VentaTest {
         Date fechaPago = Util.getFecha("10/10/2012");        
         Date fechaEmision = Util.getFecha("10/09/2012");               
         
-        ventaCabe = new OperacionCabecera(1, 1, cli, 1, 1, usu, "IN00001", "", fechaEmision, "Solutions Peru Sac", fechaVencimiento, fechaPago, 1);
+                
+        OperacionDetalle ventaDeta = null;
+        
+        ventaDeta = new OperacionDetalle("servicio de hosting", 410, 1, 90, 500);
+        ventaCabe = new OperacionCabecera(1, 1, cli, 1, 1, usu, "IN00001", fechaEmision, "",fechaVencimiento, fechaPago, 1, ventaDeta);
+        
+        
+        
+        //ventaCabe = new OperacionCabecera(1, 1, cli, 1, 1, usu, "IN00001", "", fechaEmision, "Solutions Peru Sac", fechaVencimiento, fechaPago, 1);
         
         
         VentaControlador ventaCo = new VentaControlador();

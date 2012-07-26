@@ -4,19 +4,27 @@ public class OperacionDetalle {
 	
 	/* OperacionDetalle */
 	
-	private OperacionCabecera operacion;
 	private String concepto;
 	private double precio;
 	private int cantidad;
 	private double igv;
 	private double total;
 	
-	public OperacionCabecera getOperacion() {
-		return operacion;
+	public OperacionDetalle(String concepto, 
+	 double precio,
+	 int cantidad,
+	 double igv,
+	 double total){
+		
+		this.concepto = concepto;
+		this.precio = precio;
+		this.cantidad = cantidad;
+		this.igv = igv;
+		this.total = total;
+		
 	}
-	public void setOperacion(OperacionCabecera operacion) {
-		this.operacion = operacion;
-	}
+	
+	
 	public String getConcepto() {
 		return concepto;
 	}
