@@ -1,6 +1,7 @@
 package dominio;
 
 import java.util.Date;
+
 /* OperacionCabecera */
 public class OperacionCabecera {
 
@@ -19,6 +20,40 @@ public class OperacionCabecera {
 	private int estado;//1=nuevo, 2=anulada, 3=cancelada
 	
 	
+	public OperacionCabecera() {
+	    
+	}
+	
+    public OperacionCabecera(int codigo,
+	 int codigoTipoDocumento,
+	 Cliente cliente,
+	 int codigoMoneda,
+	 int tipoOperacion,
+	 Usuario usuario,
+	 String numeroDocumento,
+	 String concepto,
+	 Date fecha_emision,
+	 String empresa,
+	 Date fechaVencimiento,
+	 Date fechaPago,
+	 int estado) 
+    {
+    	
+    	this.codigo = codigo;
+    	this.codigoTipoDocumento = codigoTipoDocumento;
+    	this.cliente = cliente;
+    	this.codigoMoneda = codigoMoneda;
+    	this.tipoOperacion = tipoOperacion;
+    	this.usuario = usuario;
+    	this.numeroDocumento = numeroDocumento;
+    	this.concepto = concepto;
+    	this.fecha_emision = fecha_emision;
+    	this.empresa = empresa;
+    	this.fechaVencimiento = fechaVencimiento;
+		this.fechaPago = fechaPago;
+		this.estado = estado;
+        
+    }
 	
 	public int getCodigo() {
 		return codigo;
