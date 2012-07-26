@@ -17,12 +17,7 @@ public class OperacionCabecera {
 	private String empresa;
 	private Date fechaVencimiento;
 	private Date fechaPago;
-	private int estado;//1=nuevo, 2=anulada, 3=cancelada
-	
-	
-	public OperacionCabecera() {
-	    
-	}
+	private int estado;//1=nuevo, 2=anulada, 3=cancelada		
 	
     public OperacionCabecera(int codigo,
 	 int codigoTipoDocumento,

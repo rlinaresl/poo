@@ -3,6 +3,8 @@ package dominio;
 import java.util.ArrayList;
 import java.util.List;
 
+import controlador.VentaControlador;
+
 
 import dominio.Cliente;
 import dominio.Usuario;
@@ -14,9 +16,14 @@ import dominio.OperacionDetalle;
 public class BaseDatos {
 
 
-    public List<Cliente> devolverClientes(){
+	public List<OperacionCabecera> devolverOperacion(){
+		List<OperacionCabecera> lista = new ArrayList<OperacionCabecera>();
+		return lista;
+	}
+	
+	public List<Cliente> devolverClientes(){
     	
-    	List<Cliente> lista = new ArrayList<Cliente>();
+		List<Cliente> lista = new ArrayList<Cliente>();
     	Cliente obj = null;
     	obj = new Cliente("0610428", "Luis", "Perez", 3, 1, "02145252", "5642012", "luisperez@gmail.com", "Av. La Paz 586", "Lima", "1", "Perú");
     	lista.add(obj);
