@@ -1,5 +1,8 @@
 package dominio;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class GrupoEstudio {
 
 	Util util = new Util();
@@ -103,12 +106,43 @@ public class GrupoEstudio {
 		else if(this.getFechafin()=="00/00/0000") return "ERROR, al menos ingrese la fecha de inicio del grupo.";
 		else return "OK";
 	}
-	public int buscarGrupoEstudio(String string) {
+	public int buscarGrupoEstudio(String termino) {
 		int cantidad = 0;
-		GrupoEstudio g = new GrupoEstudio();
-		g.setNombre("The Hackers");
-		g.setFechainicio("01/01/2012");
-		g.setFechafin("01/01/2012");
+		GrupoEstudio g1 = new GrupoEstudio();
+		GrupoEstudio g2 = new GrupoEstudio();
+		GrupoEstudio g3 = new GrupoEstudio();
+		GrupoEstudio g4 = new GrupoEstudio();
+		
+		g1.setNombre("Devs");
+		g1.setFechainicio("01/01/2012");
+		g1.setFechafin("01/01/2012");
+		
+		g2.setNombre("The Hackers");
+		g2.setFechainicio("01/01/2012");
+		g2.setFechafin("01/01/2012");
+		
+		g3.setNombre("The Hackers");
+		g3.setFechainicio("01/01/2012");
+		g3.setFechafin("01/01/2012");
+		
+		g4.setNombre("Beta Testers");
+		g4.setFechainicio("01/01/2012");
+		g4.setFechafin("01/01/2012");
+		
+		List<GrupoEstudio> grupos = new ArrayList<GrupoEstudio>();
+		grupos.add(g1);
+		grupos.add(g2);
+		grupos.add(g3);
+		grupos.add(g4);
+		
+		for (GrupoEstudio item : grupos) {
+			System.out.println(item.getNombre());
+			System.out.println(termino);
+            if(item.getNombre() == termino)
+            {
+            	cantidad = cantidad ++;
+            }            	
+        }
 		
 		//cantidad = 1;
 		return cantidad;
