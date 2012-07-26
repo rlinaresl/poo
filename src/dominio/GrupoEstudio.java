@@ -103,6 +103,17 @@ public class GrupoEstudio {
 		else if(this.getFechafin()=="00/00/0000") return "ERROR, al menos ingrese la fecha de inicio del grupo.";
 		else return "OK";
 	}
+	public int buscarGrupoEstudio(String string) {
+		int cantidad = 0;
+		GrupoEstudio g = new GrupoEstudio();
+		g.setNombre("The Hackers");
+		g.setFechainicio("01/01/2012");
+		g.setFechafin("01/01/2012");
+		
+		//cantidad = 1;
+		return cantidad;
+	}
+
 
 	
 }
