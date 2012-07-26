@@ -8,8 +8,8 @@ public class GrupoEstudio {
 	private String descripcion;
 	private String academia;
 	private String curso;
-	private Date fechainicio = Util.getFecha("01/01/2012");
-	private Date fechafin = Util.getFecha("01/01/2012");
+	private Date fechainicio = Util.getFecha("01/01/2000");
+	private Date fechafin = Util.getFecha("01/01/2000");
 	private String instructores;
 	private String syllabus;
 	private String local;
@@ -99,8 +99,8 @@ public class GrupoEstudio {
 
 	public String DarAltaGrupoEstudio() {
 		if(this.getNombre()=="") return "ERROR, al menos ingrese el nombre del grupo.";
-		else if(this.getFechainicio()==Util.getFecha("01/01/2012")) return "ERROR, al menos ingrese la fecha de inicio del grupo.";
-		else if(this.getFechafin()==Util.getFecha("01/01/2012")) return "ERROR, al menos ingrese la fecha de inicio del grupo.";
+		else if(this.getFechainicio()==Util.getFecha("01/01/2001")) return "ERROR, al menos ingrese la fecha de inicio del grupo.";
+		else if(this.getFechafin()==Util.getFecha("01/01/2001")) return "ERROR, al menos ingrese la fecha de inicio del grupo.";
 		else return "OK";
 	}
 
