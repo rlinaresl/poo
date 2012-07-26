@@ -31,7 +31,7 @@ public class ClienteTest {
 		c.setPais("Peru");
 		String mensajeAlta;
 		mensajeAlta = c.DarAltaCliente();
-		System.out.println("El estado de la Alta de CLiente es: " + mensajeAlta);
+		System.out.println("El estado de la Alta de Cliente es: " + mensajeAlta);
 		assertEquals("OK", mensajeAlta);
 	}
 	
