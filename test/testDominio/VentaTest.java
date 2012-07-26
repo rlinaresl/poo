@@ -1,8 +1,9 @@
 package testDominio;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+
 import java.util.Date;
-import junit.framework.Assert;
 import org.junit.Test;
 
 import controlador.ClienteControlador;
@@ -19,7 +20,7 @@ public class VentaTest {
 	@Test
     public void crearVentaTest() {        
         
-        ClienteControlador clienteCo = new ClienteControlador();
+		ClienteControlador clienteCo = new ClienteControlador();
         Cliente cli = clienteCo.BuscarCliente("0610428");
         
         UsuarioControlador usuarioCo = new UsuarioControlador();
@@ -34,19 +35,64 @@ public class VentaTest {
         OperacionDetalle ventaDeta = null;
         
         ventaDeta = new OperacionDetalle("servicio de hosting", 410, 1, 90, 500);
-        ventaCabe = new OperacionCabecera(1, 1, cli, 1, 1, usu, "IN00001", fechaEmision, "",fechaVencimiento, fechaPago, 1, ventaDeta);
-        
-        
-        
-        //ventaCabe = new OperacionCabecera(1, 1, cli, 1, 1, usu, "IN00001", "", fechaEmision, "Solutions Peru Sac", fechaVencimiento, fechaPago, 1);
-        
+        ventaCabe = new OperacionCabecera(4, 1, cli, 1, 1, usu, "IN00001", fechaEmision, "",fechaVencimiento, fechaPago, 1, ventaDeta);
         
         VentaControlador ventaCo = new VentaControlador();
         int resultado = ventaCo.crearVentaCabe(ventaCabe);
         
-        //verifico
         assertEquals(1, resultado, 0);        
 
     }
+	
+	@Test
+	public void cambiarEstadoVentatest()
+	{
+		VentaControlador ventaCo = new VentaControlador();
+		OperacionCabecera venta = ventaCo.buscarVenta(1);
+		boolean resultado = ventaCo.cambiarEstadoVenta(venta);
+		assertTrue("No existe la Venta", resultado);
+	}
+	
+	@Test
+	public void buscarVentaCodigoTest()
+	{
+			
+		VentaControlador ventaCo = new VentaControlador();
+		OperacionCabecera venta = new OperacionCabecera();
+		venta.setCodigo(1);
+		
+		boolean resultado = ventaCo.buscarVentaCodigo(venta);
+		assertTrue("No existe la Venta", resultado);
+		
+	}
+	
+	@Test
+	public void buscarVentaClienteTest()
+	{
+			
+		VentaControlador ventaCo = new VentaControlador();
+		ClienteControlador clienteCo = new ClienteControlador();
+        Cliente cli = clienteCo.BuscarCliente("0610428");
+        
+		
+		boolean resultado = ventaCo.buscarVentaCliente(cli);
+		assertTrue("No existe la Venta", resultado);
+		
+	}
+	
+	@Test
+	public void buscarVentaUsuarioTest()
+	{
+			
+		VentaControlador ventaCo = new VentaControlador();
+		UsuarioControlador usuarioCo = new UsuarioControlador();
+        Usuario usu = usuarioCo.BuscarUsuario(1);
+		
+		boolean resultado = ventaCo.buscarVentaUsuario(usu);
+		assertTrue("No existe la Venta", resultado);
+		
+	}
+	
+	
 	
 }

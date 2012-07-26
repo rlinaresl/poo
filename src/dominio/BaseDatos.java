@@ -1,10 +1,11 @@
 package dominio;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
-import controlador.VentaControlador;
-
+import controlador.ClienteControlador;
+import controlador.UsuarioControlador;
 
 import dominio.Cliente;
 import dominio.Usuario;
@@ -18,6 +19,24 @@ public class BaseDatos {
 
 	public List<OperacionCabecera> devolverOperacion(){
 		List<OperacionCabecera> lista = new ArrayList<OperacionCabecera>();
+		OperacionDetalle ventaDeta = null;
+		OperacionCabecera ventaCabe = null;
+        
+		ClienteControlador clienteCo = new ClienteControlador();
+        Cliente cli = clienteCo.BuscarCliente("0610428");
+        
+        UsuarioControlador usuarioCo = new UsuarioControlador();
+        Usuario usu = usuarioCo.BuscarUsuario(1);    
+        
+        Date fechaVencimiento = Util.getFecha("10/08/2012");
+        Date fechaPago = Util.getFecha("10/10/2012");        
+        Date fechaEmision = Util.getFecha("10/09/2012");  
+        
+        ventaDeta = new OperacionDetalle("servicio de hosting", 410, 1, 90, 500);
+        ventaCabe = new OperacionCabecera(1, 1, cli, 1, 1, usu, "IN00001", fechaEmision, "",fechaVencimiento, fechaPago, 1, ventaDeta);
+        
+        lista.add(ventaCabe);
+        
 		return lista;
 	}
 	
@@ -54,6 +73,8 @@ public class BaseDatos {
     	return lista;
     	
     }
+    
+    
         
 
 }
