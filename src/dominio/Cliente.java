@@ -16,11 +16,12 @@ public class Cliente {
 	private String estado;   
 	private String pais;    
 		
-	public Cliente(String codigo, String nombres, String apellidos, int codigoTipoDocumento, String numeroDocumento,String telefono, String correo, String direccion, 
+	public Cliente(String codigo, String nombres, String apellidos, int tipoCliente, int codigoTipoDocumento, String numeroDocumento,String telefono, String correo, String direccion, 
 			String ciudad, String estado, String pais) {
 		setCodigo(codigo);
 		setNombres(nombres);
 		setApellidos(apellidos);
+		setTipoCliente(tipoCliente);
 		setCodigoTipoDocumento(codigoTipoDocumento);
 		setNumeroDocumento(numeroDocumento);
         setTelefono(telefono);
@@ -30,7 +31,21 @@ public class Cliente {
         setEstado(estado);
         setPais(pais);
     }
+	
+	
 		
+	public int getTipoCliente() {
+		return tipoCliente;
+	}
+
+
+
+	public void setTipoCliente(int tipoCliente) {
+		this.tipoCliente = tipoCliente;
+	}
+
+
+
 	public String getCodigo() {
 		return codigo;
 	}
