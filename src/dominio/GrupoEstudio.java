@@ -1,15 +1,15 @@
 package dominio;
 
-import java.util.Date;
-
 public class GrupoEstudio {
 
+	Util util = new Util();
+	
 	private String nombre = "";
 	private String descripcion;
 	private String academia;
 	private String curso;
-	private Date fechainicio = Util.getFecha("01/01/2000");
-	private Date fechafin = Util.getFecha("01/01/2000");
+	private String fechainicio = "00/00/0000";
+	private String fechafin = "00/00/0000";
 	private String instructores;
 	private String syllabus;
 	private String local;
@@ -42,16 +42,16 @@ public class GrupoEstudio {
 	public void setCurso(String curso) {
 		this.curso = curso;
 	}
-	public Date getFechainicio() {
+	public String getFechainicio() {
 		return fechainicio;
 	}
-	public void setFechainicio(Date fechainicio) {
+	public void setFechainicio(String fechainicio) {
 		this.fechainicio = fechainicio;
 	}
-	public Date getFechafin() {
+	public String getFechafin() {
 		return fechafin;
 	}
-	public void setFechafin(Date fechafin) {
+	public void setFechafin(String fechafin) {
 		this.fechafin = fechafin;
 	}
 	public String getInstructores() {
@@ -99,8 +99,8 @@ public class GrupoEstudio {
 
 	public String DarAltaGrupoEstudio() {
 		if(this.getNombre()=="") return "ERROR, al menos ingrese el nombre del grupo.";
-		else if(this.getFechainicio()==Util.getFecha("01/01/2001")) return "ERROR, al menos ingrese la fecha de inicio del grupo.";
-		else if(this.getFechafin()==Util.getFecha("01/01/2001")) return "ERROR, al menos ingrese la fecha de inicio del grupo.";
+		else if(this.getFechainicio()=="00/00/0000") return "ERROR, al menos ingrese la fecha de inicio del grupo.";
+		else if(this.getFechafin()=="00/00/0000") return "ERROR, al menos ingrese la fecha de inicio del grupo.";
 		else return "OK";
 	}
 
