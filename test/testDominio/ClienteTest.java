@@ -1,4 +1,6 @@
 package testDominio;
+import static org.junit.Assert.*;
+
 import org.junit.Test;
 import dominio.Cliente;
 
@@ -13,23 +15,28 @@ public class ClienteTest {
 	@Test
 	public void testDarAltaCliente()
 	{
-		String codigo = "3434";
-		String nombres = "Ronald";
-		String apellidos = "Quilca";
-		int tipoCliente = 3;
-		int codigoTipoDocumento = 3;
-		String numeroDocumento = "34234";
-		String telefono="";
-		String correo = "";
-		String direccion = "";
-		String ciudad = "";
-		String estado = "";
-		String pais = "Peru";
-		Cliente c = new Cliente(codigo, nombres, apellidos, tipoCliente, codigoTipoDocumento, numeroDocumento, telefono, correo, direccion, ciudad, estado, pais);
+		Cliente c = new Cliente();
+		
+		c.setCodigo("45547A");
+		c.setNombres("Ronald");
+		c.setApellidos("Quilca");
+		c.setTipoCliente(3);
+		c.setCodigoTipoDocumento(1);
+		c.setNumeroDocumento("145465");
+		c.setTelefono("234234");
+		c.setCorreo("juan@juan.com");
+		c.setDireccion("Av. Los Alamos 3434");
+		c.setCiudad("Lima");
+		c.setEstado("1");
+		c.setPais("Peru");
+		String mensajeAlta;
+		mensajeAlta = c.DarAltaCliente();
+		System.out.println("El estado de la Alta de CLiente es: " + mensajeAlta);
+		assertEquals("OK", mensajeAlta);
 	}
 	
 	@Test
-	public void testInscribirClienteGrupodeestudio()
+	public void testInscribirClienteEnGrupoEstudio()
 	{
 		
 	}
