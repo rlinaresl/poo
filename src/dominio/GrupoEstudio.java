@@ -19,7 +19,7 @@ public class GrupoEstudio {
 	private String aula;
 	private String coordenadax;
 	private String coordenaday;
-	private String estado; //en curso, cancelado, finalizado
+	private String estado; //EN CURSO, CANCELADO, FINALIZADO
 	
 	public String getNombre() {
 		return nombre;
@@ -104,7 +104,11 @@ public class GrupoEstudio {
 		if(this.getNombre()=="") return "ERROR, al menos ingrese el nombre del grupo.";
 		else if(this.getFechainicio()=="00/00/0000") return "ERROR, al menos ingrese la fecha de inicio del grupo.";
 		else if(this.getFechafin()=="00/00/0000") return "ERROR, al menos ingrese la fecha de inicio del grupo.";
-		else return "OK";
+		else
+		{
+			this.setEstado("EN CURSO");
+			return "OK";
+		}
 	}
 	public int buscarGrupoEstudio(String termino) {
 		int cantidad = 0;
@@ -139,8 +143,7 @@ public class GrupoEstudio {
 			System.out.println(item.getNombre() + "--" + termino);
             if(item.getNombre() == termino)
             {
-    			System.out.println("**");
-            	cantidad = cantidad + 1;
+    			cantidad = cantidad + 1;
             }            	
         }
 		return cantidad;
