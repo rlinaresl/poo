@@ -140,7 +140,7 @@ public class GrupoEstudio {
 		grupos.add(g4);
 		
 		for (GrupoEstudio item : grupos) {
-			System.out.println(item.getNombre() + "--" + termino);
+			System.out.println(item.getNombre() + "-" + termino);
             if(item.getNombre() == termino)
             {
     			cantidad = cantidad + 1;
