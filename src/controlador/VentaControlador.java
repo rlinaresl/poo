@@ -3,6 +3,10 @@ package controlador;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+import javax.xml.bind.ParseConversionEvent;
 
 import dominio.Cliente;
 import dominio.Util;
@@ -10,16 +14,34 @@ import dominio.BaseDatos;
 import dominio.OperacionCabecera;
 import dominio.OperacionDetalle;
 import dominio.Usuario;
+import dominio.BusinessException;
+import dominio.Validation;
 
 public class VentaControlador {
 
 	Util util = new Util();
 	BaseDatos BD = new BaseDatos();
 	
-	/*
+	
 	public static void main(String args[])
 	
 	{
+		VentaControlador ventaC = new VentaControlador();
+		try {
+			
+			OperacionCabecera obj = ventaC.buscarVenta2("1");
+			
+		} catch (BusinessException be) {
+        	
+			System.out.print(be.getMessage());
+        	//be.printStackTrace();        	
+            //Logger.getLogger(VentaControlador.class.getName()).log(Level.SEVERE, null, be);
+        	
+            
+        }
+		
+		
+		/*
 		ClienteControlador clienteCo = new ClienteControlador();
         Cliente cli = clienteCo.BuscarCliente("0610428");
         
@@ -40,8 +62,44 @@ public class VentaControlador {
         VentaControlador ventaCo = new VentaControlador();
         int resultado = ventaCo.crearVentaCabe(ventaCabe);
         System.out.print(resultado);
+        */
 	}
-	*/
+	
+	
+	List<OperacionCabecera> listaVenta = null;
+    private String mensajeError = "";
+
+    public static Usuario usuarioAutenticado = new Usuario();
+
+    public VentaControlador() {
+    	listaVenta = BD.devolverOperacion();    	
+    }
+	
+	public OperacionCabecera buscarVenta2(Object codigo) throws BusinessException {
+		Validation o = new Validation();
+		
+		int ncodigo = 0;
+		String mensaje = "";
+		
+		if (o.isNotNumber(codigo))
+		{
+			mensaje = "Codigo incorrecto.";
+		}
+		else
+		{
+			ncodigo = Integer.parseInt(codigo.toString());		
+		
+	        for (OperacionCabecera obj : listaVenta) {
+	            if (obj.getCodigo() == ncodigo) {
+	                return obj;
+	            }
+	        }
+	        mensaje = "No existe el codigo de venta.";
+		}
+		
+		throw new BusinessException(mensaje);
+		
+    }
 		
 	public int crearVentaCabe(OperacionCabecera obj){
 		
