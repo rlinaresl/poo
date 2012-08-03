@@ -58,23 +58,26 @@ public class BaseDatos {
     	
     }
     
-    public List<Usuario> devolverUsuarios(){
+public List<Usuario> devolverUsuarios(){
     	
     	List<Usuario> lista = new ArrayList<Usuario>();
     	
     	Usuario obj = null;
-    	obj = new Usuario(1, "Abel", "Rodriguez", "abel@gmail.com", "11111", 1);
+    	obj = new Usuario(1, "Ricardo", "Linares", "rlinareslivia@gmail.com", "11111", 1);
     	lista.add(obj);
-    	obj = new Usuario(2, "Marcelo", "Mendoza", "marcelo@gmail.com", "22222", 1);
+    	obj = new Usuario(2, "Ronald", "Quilca", "rquilca@gmail.com", "22222", 2);
     	lista.add(obj);
-    	obj = new Usuario(3, "Carlos", "Rios", "carlos@gmail.com", "33333", 1);
+    	obj = new Usuario(3, "Yovani", "Cueva", "yovanicueva@gmail.com", "33333", 2);
     	lista.add(obj);
     	
     	return lista;
     	
     }
+    	
+    }
+    
     
     
         
 
-}
+
