@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.List;
 
 import dominio.Cliente;
+import dominio.OperacionCabecera.Estado;
 import dominio.Util;
 import dominio.BaseDatos;
 import dominio.OperacionCabecera;
@@ -32,7 +33,7 @@ public class CompraControlador {
         Date fechaEmision = Util.getFecha("01/10/2012");               
         
         compraDeta = new OperacionDetalle("servicio de consultoria", 400, 1, 72, 472);
-        compraCabe = new OperacionCabecera(1, 1, cli, 1, 2, usu, "VE00001", fechaEmision, "", fechaVencimiento, fechaPago, 1, compraDeta);
+        compraCabe = new OperacionCabecera(1, 1, cli, 1, 2, usu, "VE00001", fechaEmision, "", fechaVencimiento, fechaPago, Estado.NUEVO, compraDeta);
         
         CompraControlador compraCo = new CompraControlador();
         int resultado = compraCo.crearCompraCabe(compraCabe);

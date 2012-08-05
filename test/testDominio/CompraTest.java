@@ -13,6 +13,7 @@ import dominio.OperacionDetalle;
 import dominio.Usuario;
 import dominio.OperacionCabecera;
 import dominio.Util;
+import dominio.OperacionCabecera.Estado;
 
 public class CompraTest {
 	
@@ -33,7 +34,7 @@ public class CompraTest {
         OperacionDetalle compraDeta = null;
         
         compraDeta = new OperacionDetalle("servicio de consultoria", 400, 1, 72, 472);
-        compraCabe = new OperacionCabecera(1, 1, cli, 1, 1, usu, "VE00001", fechaEmision, "", fechaVencimiento, fechaPago, 1, compraDeta);  
+        compraCabe = new OperacionCabecera(1, 1, cli, 1, 1, usu, "VE00001", fechaEmision, "", fechaVencimiento, fechaPago, Estado.NUEVO, compraDeta);  
         
         CompraControlador compraCo = new CompraControlador();
         int resultado = compraCo.crearCompraCabe(compraCabe);

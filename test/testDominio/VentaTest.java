@@ -8,6 +8,7 @@ import controlador.ClienteControlador;
 import controlador.UsuarioControlador;
 import controlador.VentaControlador;
 import dominio.Cliente;
+import dominio.OperacionCabecera.Estado;
 import dominio.OperacionDetalle;
 import dominio.Usuario;
 import dominio.OperacionCabecera;
@@ -32,21 +33,37 @@ public class VentaTest {
                 
         OperacionDetalle ventaDeta = null;
         
-        ventaDeta = new OperacionDetalle("servicio de hosting", 410, 1, 90, 500);
-        ventaCabe = new OperacionCabecera(4, 1, cli, 1, 1, usu, "IN00001", fechaEmision, "",fechaVencimiento, fechaPago, 1, ventaDeta);
+        ventaDeta = new OperacionDetalle("servicio de hosting", 410, 1, 90, 500);        
+        ventaCabe = new OperacionCabecera(4, 1, cli, 1, 1, usu, "IN00001", fechaEmision, "",fechaVencimiento, fechaPago, Estado.NUEVO, ventaDeta);
         
         VentaControlador ventaCo = new VentaControlador();
         int resultado = ventaCo.crearVentaCabe(ventaCabe);
         
-        assertEquals(1, resultado, 0);        
+        assertEquals(1, resultado, 0);
 
     }
+	
+	
+	@Test
+    public void updateVentaTest() {                		
+		
+		
+		
+    }
+	
+	@Test
+    public void eliminarVentaTest() {                		
+		
+		
+		
+    }
+	
 	
 	@Test
 	public void cambiarEstadoVentatest()
 	{
 		VentaControlador ventaCo = new VentaControlador();
-		OperacionCabecera venta = ventaCo.buscarVenta(1);
+		OperacionCabecera venta = ventaCo.buscarVenta(1);		
 		boolean resultado = ventaCo.cambiarEstadoVenta(venta);
 		assertTrue("No existe la Venta", resultado);
 	}

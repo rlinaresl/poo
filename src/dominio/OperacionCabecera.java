@@ -5,6 +5,11 @@ import java.util.Date;
 /* OperacionCabecera */
 public class OperacionCabecera {
 
+	public enum Estado
+	{
+		NUEVO, ANULADA, CANCELADA
+	}
+	
 	private int codigo;
 	private int codigoTipoDocumento;//1=dni, 2=ruc
 	private Cliente cliente;
@@ -17,7 +22,7 @@ public class OperacionCabecera {
 	private Date fechaVencimiento;
 	private Date fechaPago;
 	private OperacionDetalle operacionDetalle;
-	private int estado;//1=nuevo, 2=anulada, 3=cancelada		
+	private Estado estado;//1=nuevo, 2=anulada, 3=cancelada		
 	
 	public OperacionCabecera(){
 		
@@ -34,7 +39,7 @@ public class OperacionCabecera {
 	 String empresa,
 	 Date fechaVencimiento,
 	 Date fechaPago,
-	 int estado, 
+	 Estado estado, 
 	 OperacionDetalle operacionDetalle) 
     {
     	
@@ -135,13 +140,14 @@ public class OperacionCabecera {
 	public void setFechaPago(Date fechaPago) {
 		this.fechaPago = fechaPago;
 	}
-	public int getEstado() {
+
+	public Estado getEstado() {
 		return estado;
 	}
-	public void setEstado(int estado) {
+
+	public void setEstado(Estado estado) {
 		this.estado = estado;
 	}
-	
 	
 	
 	

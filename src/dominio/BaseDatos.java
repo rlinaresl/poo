@@ -8,6 +8,7 @@ import controlador.ClienteControlador;
 import controlador.UsuarioControlador;
 
 import dominio.Cliente;
+import dominio.OperacionCabecera.Estado;
 import dominio.Usuario;
 import dominio.OperacionCabecera;
 import dominio.OperacionDetalle;
@@ -33,7 +34,9 @@ public class BaseDatos {
         Date fechaEmision = Util.getFecha("10/09/2012");  
         
         ventaDeta = new OperacionDetalle("servicio de hosting", 410, 1, 90, 500);
-        ventaCabe = new OperacionCabecera(1, 1, cli, 1, 1, usu, "IN00001", fechaEmision, "",fechaVencimiento, fechaPago, 1, ventaDeta);
+        
+        ventaCabe = new OperacionCabecera();        
+        ventaCabe = new OperacionCabecera(1, 1, cli, 1, 1, usu, "IN00001", fechaEmision, "",fechaVencimiento, fechaPago, Estado.CANCELADA, ventaDeta);
         
         lista.add(ventaCabe);
         
