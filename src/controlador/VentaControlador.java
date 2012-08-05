@@ -16,6 +16,7 @@ import dominio.OperacionDetalle;
 import dominio.Usuario;
 import dominio.BusinessException;
 import dominio.Validation;
+import dominio.OperacionCabecera.Estado;
 
 public class VentaControlador {
 
@@ -26,10 +27,22 @@ public class VentaControlador {
 	public static void main(String args[])
 	
 	{
-		VentaControlador ventaC = new VentaControlador();
+		//VentaControlador ventaC = new VentaControlador();
+		
+		VentaControlador ventaCo = new VentaControlador();
+		OperacionCabecera venta = ventaCo.buscarVenta(1);		
+		boolean resultado = ventaCo.cambiarEstadoVenta(venta);
+		System.out.println(resultado);
+		
+		/*
 		try {
 			
-			OperacionCabecera obj = ventaC.buscarVenta2("1");
+			//OperacionCabecera obj = ventaC.buscarVenta2("1");
+			OperacionCabecera venta = ventaC.buscarVenta2("1");
+			VentaControlador dao = new VentaControlador();
+			dao.cambiarEstadoVenta(venta);
+			
+			
 			
 		} catch (BusinessException be) {
         	
@@ -39,6 +52,7 @@ public class VentaControlador {
         	
             
         }
+		*/
 		
 		
 		/*
@@ -99,8 +113,16 @@ public class VentaControlador {
 		
 		throw new BusinessException(mensaje);
 		
-    }
+    }	
 		
+	public int updateVentaCabe(OperacionCabecera obj)
+	{
+		
+				
+		return 1;
+		
+	}
+	
 	public int crearVentaCabe(OperacionCabecera obj){
 		
 		ClienteControlador clienteCo = new ClienteControlador();		
@@ -219,7 +241,7 @@ public class VentaControlador {
 			
             if (item.getCodigo() == venta.getCodigo())
             {
-            	if (item.getEstado() == 1)
+            	if (item.getEstado().equals(Estado.CANCELADA))
             		return true;
             }            	
         }
