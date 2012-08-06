@@ -9,6 +9,7 @@ import controlador.UsuarioControlador;
 import controlador.VentaControlador;
 import dominio.Cliente;
 import dominio.OperacionCabecera.Estado;
+import dominio.OperacionCabecera.TipoOperacion;
 import dominio.OperacionDetalle;
 import dominio.Usuario;
 import dominio.OperacionCabecera;
@@ -34,7 +35,7 @@ public class VentaTest {
         OperacionDetalle ventaDeta = null;
         
         ventaDeta = new OperacionDetalle("servicio de hosting", 410, 1, 90, 500);        
-        ventaCabe = new OperacionCabecera(4, 1, cli, 1, 1, usu, "IN00001", fechaEmision, "",fechaVencimiento, fechaPago, Estado.NUEVO, ventaDeta);
+        ventaCabe = new OperacionCabecera(4, 1, cli, 1, TipoOperacion.VENTA, usu, "IN00001", fechaEmision, "",fechaVencimiento, fechaPago, Estado.NUEVO, ventaDeta);
         
         VentaControlador ventaCo = new VentaControlador();
         int resultado = ventaCo.crearVentaCabe(ventaCabe);
