@@ -9,6 +9,7 @@ import controlador.UsuarioControlador;
 
 import dominio.Cliente;
 import dominio.OperacionCabecera.Estado;
+import dominio.OperacionCabecera.TipoOperacion;
 import dominio.Usuario;
 import dominio.OperacionCabecera;
 import dominio.OperacionDetalle;
@@ -16,7 +17,6 @@ import dominio.OperacionDetalle;
 
 
 public class BaseDatos {
-
 
 	public List<OperacionCabecera> devolverOperacion(){
 		List<OperacionCabecera> lista = new ArrayList<OperacionCabecera>();
@@ -36,9 +36,34 @@ public class BaseDatos {
         ventaDeta = new OperacionDetalle("servicio de hosting", 410, 1, 90, 500);
         
         ventaCabe = new OperacionCabecera();        
-        ventaCabe = new OperacionCabecera(1, 1, cli, 1, 1, usu, "IN00001", fechaEmision, "",fechaVencimiento, fechaPago, Estado.CANCELADA, ventaDeta);
+        ventaCabe = new OperacionCabecera(1, 1, cli, 1, TipoOperacion.VENTA, usu, "IN00001", fechaEmision, "",fechaVencimiento, fechaPago, Estado.CANCELADA, ventaDeta);
         
         lista.add(ventaCabe);
+        
+		return lista;
+	}
+
+	public List<OperacionCabecera> devolverCompra(){
+		List<OperacionCabecera> lista = new ArrayList<OperacionCabecera>();
+		OperacionDetalle compraDeta = null;
+		OperacionCabecera compraCabe = null;
+        
+		ClienteControlador clienteCo = new ClienteControlador();
+        Cliente cli = clienteCo.BuscarCliente("0610430");
+        
+        UsuarioControlador usuarioCo = new UsuarioControlador();
+        Usuario usu = usuarioCo.BuscarUsuario(1);    
+        
+        Date fechaVencimiento = Util.getFecha("10/08/2012");
+        Date fechaPago = Util.getFecha("10/10/2012");        
+        Date fechaEmision = Util.getFecha("10/09/2012");  
+        
+        compraDeta = new OperacionDetalle("servicio de hosting", 410, 1, 90, 500);
+        
+        compraCabe = new OperacionCabecera();        
+        compraCabe = new OperacionCabecera(1, 1, cli, 1, TipoOperacion.COMPRA, usu, "CO00001", fechaEmision, "",fechaVencimiento, fechaPago, Estado.CANCELADA, compraDeta);
+        
+        lista.add(compraCabe);
         
 		return lista;
 	}
@@ -61,7 +86,7 @@ public class BaseDatos {
     	
     }
     
-public List<Usuario> devolverUsuarios(){
+	public List<Usuario> devolverUsuarios(){
     	
     	List<Usuario> lista = new ArrayList<Usuario>();
     	
@@ -72,12 +97,14 @@ public List<Usuario> devolverUsuarios(){
     	lista.add(obj);
     	obj = new Usuario(3, "Yovani", "Cueva", "yovanicueva@gmail.com", "33333", 2);
     	lista.add(obj);
+       	obj = new Usuario(4, "Miguel", "Davila", "jmigueldr@gmail.com", "44444", 2);
+    	lista.add(obj);
     	
     	return lista;
     	
     }
     	
-    }
+ }
     
     
     

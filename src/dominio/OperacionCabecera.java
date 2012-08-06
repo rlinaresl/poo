@@ -10,11 +10,16 @@ public class OperacionCabecera {
 		NUEVO, ANULADA, CANCELADA
 	}
 	
+	public enum TipoOperacion
+	{
+		VENTA, COMPRA
+	}	
+	
 	private int codigo;
 	private int codigoTipoDocumento;//1=dni, 2=ruc
 	private Cliente cliente;
 	private int codigoMoneda;//1=soles, 2=dolares
-	private int tipoOperacion;//1=venta, 2=compra
+	private TipoOperacion tipoOperacion;//1=venta, 2=compra
 	private Usuario usuario;
 	private String numeroDocumento;	
 	private Date fecha_emision;
@@ -32,7 +37,7 @@ public class OperacionCabecera {
 	 int codigoTipoDocumento,
 	 Cliente cliente,
 	 int codigoMoneda,
-	 int tipoOperacion,
+	 TipoOperacion tipoOperacion,
 	 Usuario usuario,
 	 String numeroDocumento,	 
 	 Date fecha_emision,
@@ -58,33 +63,31 @@ public class OperacionCabecera {
 		this.operacionDetalle = operacionDetalle;
         
     }
-    
-    
 	
 	public OperacionDetalle getOperacionDetalle() {
 		return operacionDetalle;
 	}
 
-
-
 	public void setOperacionDetalle(OperacionDetalle operacionDetalle) {
 		this.operacionDetalle = operacionDetalle;
 	}
 
-
-
 	public int getCodigo() {
 		return codigo;
 	}
+	
 	public void setCodigo(int codigo) {
 		this.codigo = codigo;
 	}
+	
 	public int getCodigoTipoDocumento() {
 		return codigoTipoDocumento;
 	}
+	
 	public void setCodigoTipoDocumento(int codigoTipoDocumento) {
 		this.codigoTipoDocumento = codigoTipoDocumento;
 	}
+	
 	public Cliente getCliente() {
 		return cliente;
 	}
@@ -97,12 +100,15 @@ public class OperacionCabecera {
 	public void setCodigoMoneda(int codigoMoneda) {
 		this.codigoMoneda = codigoMoneda;
 	}
-	public int getTipoOperacion() {
+
+	public TipoOperacion getTipoOperacion() {
 		return tipoOperacion;
 	}
-	public void setTipoOperacion(int tipoOperacion) {
+
+	public void setTipoOperacion(TipoOperacion tipoOperacion) {
 		this.tipoOperacion = tipoOperacion;
 	}
+
 	public Usuario getUsuario() {
 		return usuario;
 	}
@@ -119,24 +125,31 @@ public class OperacionCabecera {
 	public Date getFecha_emision() {
 		return fecha_emision;
 	}
+	
 	public void setFecha_emision(Date fecha_emision) {
 		this.fecha_emision = fecha_emision;
 	}
+	
 	public String getEmpresa() {
 		return empresa;
 	}
+	
 	public void setEmpresa(String empresa) {
 		this.empresa = empresa;
 	}
+	
 	public Date getFechaVencimiento() {
 		return fechaVencimiento;
 	}
+	
 	public void setFechaVencimiento(Date fechaVencimiento) {
 		this.fechaVencimiento = fechaVencimiento;
 	}
+	
 	public Date getFechaPago() {
 		return fechaPago;
 	}
+	
 	public void setFechaPago(Date fechaPago) {
 		this.fechaPago = fechaPago;
 	}
@@ -148,7 +161,5 @@ public class OperacionCabecera {
 	public void setEstado(Estado estado) {
 		this.estado = estado;
 	}
-	
-	
-	
+		
 }
