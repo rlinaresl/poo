@@ -8,6 +8,7 @@ import org.junit.Test;
 
 
 import dominio.Usuario1;
+import dominio.Usuario1.Perfil;
 
 public class UsuarioTest1 {
 
@@ -40,30 +41,42 @@ public class UsuarioTest1 {
 	
 		Usuario1 usuario1 = new Usuario1();
 		
-		usuario1.setCodigo(1);
+		usuario1.setCodigo(4);
 		usuario1.setNombres("Juan Miguel");
 		usuario1.setApellidos("XXXXX");
 		usuario1.setCorreo("JM2@gmail.com");
 		usuario1.setClave("44444");
-		usuario1.setPerfil(2);
-		String mensaje;
-		mensaje = usuario1.RegistrarUsuario();
+		usuario1.setPerfil(Perfil.USUARIO);
+		String mensaje="";
+		
+		try {
+			mensaje = usuario1.RegistrarUsuario();
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		
 		System.out.println("Registro de usuario: " + mensaje);
 		assertEquals("OK", mensaje);
 	}
 	
 	@Test
-	public void TestValidarCorreo(){
-	 
-		Usuario1 usuario1=new Usuario1();
+	public void TestBuscarUsuarioCodigo(){
 		
-		String mensaje2;
-		mensaje2=usuario1.ValidarCorreo("JM2@gmail.com");
-		System.out.println("Validacion de correo: " + mensaje2);
-		assertEquals("Correcto", mensaje2);
+		Usuario1 usuario1 =new Usuario1();
+		int codigo1=usuario1.BuscarUsuario(1);
+		System.out.println("Codigo para enviar: "+codigo1);
+		assertEquals(1,codigo1);
+	}
+	
+	@Test
+	public void TestEliminarUsuario(){
+		
+		Usuario1 usuario1=new Usuario1();
+		boolean codigo1=usuario1.EliminarUsuario(1);
+		System.out.println("Usuario eliminado: "+codigo1);
+		assertEquals(true,codigo1);
 		
 		
 	}
-	
 	
 }

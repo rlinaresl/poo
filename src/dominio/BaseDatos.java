@@ -6,13 +6,9 @@ import java.util.List;
 
 import controlador.ClienteControlador;
 import controlador.UsuarioControlador;
-
-import dominio.Cliente;
 import dominio.OperacionCabecera.Estado;
 import dominio.OperacionCabecera.TipoOperacion;
-import dominio.Usuario;
-import dominio.OperacionCabecera;
-import dominio.OperacionDetalle;
+import dominio.Usuario1.Perfil;
 
 
 
@@ -86,18 +82,17 @@ public class BaseDatos {
     	
     }
     
-	public List<Usuario> devolverUsuarios(){
+    
+public List<Usuario1> devolverUsuarios(){
     	
-    	List<Usuario> lista = new ArrayList<Usuario>();
+    	List<Usuario1> lista = new ArrayList<Usuario1>();
     	
-    	Usuario obj = null;
-    	obj = new Usuario(1, "Ricardo", "Linares", "rlinareslivia@gmail.com", "11111", 1);
+    	Usuario1 obj = null;
+    	obj = new Usuario1(1, "Ricardo", "Linares", "rlinareslivia@gmail.com", "11111",Perfil.ADMINISTRADOR);
     	lista.add(obj);
-    	obj = new Usuario(2, "Ronald", "Quilca", "rquilca@gmail.com", "22222", 2);
+    	obj = new Usuario1(2, "Ronald", "Quilca", "rquilca@gmail.com", "22222",Perfil.USUARIO);
     	lista.add(obj);
-    	obj = new Usuario(3, "Yovani", "Cueva", "yovanicueva@gmail.com", "33333", 2);
-    	lista.add(obj);
-       	obj = new Usuario(4, "Miguel", "Davila", "jmigueldr@gmail.com", "44444", 2);
+    	obj = new Usuario1(3, "Yovani", "Cueva", "yovanicueva@gmail.com", "33333",Perfil.USUARIO);
     	lista.add(obj);
     	
     	return lista;
