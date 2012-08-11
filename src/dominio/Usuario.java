@@ -141,17 +141,39 @@ public class Usuario {
 	public boolean EliminarUsuario(int codigo) {
 		
 		List<Usuario> lista =  BD.devolverUsuarios();
-		
+		int i = 0;
 		for (Usuario item:lista){
-			if (item.getCodigo()==codigo&&codigo==1){
-				lista.remove(2);
+			if (item.getCodigo()==codigo){
+				lista.remove(i);
 			  System.out.println("Listo para eliminar usuarios ");
 				return true ;
 			}
+			i++;
 					
 		}
 		return false;
 
 		
 	}
-}
+	
+	public boolean EditarUsuario(Usuario obj){
+		List<Usuario> lista =BD.devolverUsuarios();
+		for(int i=0; i<lista.size(); i++)
+		{
+			
+			if (lista.get(i).getCodigo()==obj.getCodigo()){
+				Usuario u = new Usuario(obj.getCodigo(), obj.getNombres(),obj.getApellidos(),obj.getCorreo(),obj.getClave(),obj.getPerfil());				
+				System.out.println("Usuario Editado  ");
+				return true ;
+			}
+			
+		}
+		
+		return false;
+		
+		
+	}
+}	
+		
+		
+	
