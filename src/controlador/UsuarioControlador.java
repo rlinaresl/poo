@@ -3,17 +3,17 @@ package controlador;
 import java.util.List;
 
 import dominio.BaseDatos;
-import dominio.Usuario1;
+import dominio.Usuario;
 
 public class UsuarioControlador {
 	
 	BaseDatos BD = new BaseDatos();
 	
-	public Usuario1 BuscarUsuario(int codigo){		
+	public Usuario BuscarUsuario(int codigo){		
 		
-		List<Usuario1> listaUsuarios = BD.devolverUsuarios();
+		List<Usuario> listaUsuarios = BD.devolverUsuarios();
 		
-		for (Usuario1 item:listaUsuarios)
+		for (Usuario item:listaUsuarios)
 		{
 			if (codigo == item.getCodigo())
 				return item;

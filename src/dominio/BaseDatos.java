@@ -8,7 +8,7 @@ import controlador.ClienteControlador;
 import controlador.UsuarioControlador;
 import dominio.OperacionCabecera.Estado;
 import dominio.OperacionCabecera.TipoOperacion;
-import dominio.Usuario1.Perfil;
+import dominio.Usuario.Perfil;
 
 
 
@@ -83,16 +83,16 @@ public class BaseDatos {
     }
     
     
-public List<Usuario1> devolverUsuarios(){
+public List<Usuario> devolverUsuarios(){
     	
-    	List<Usuario1> lista = new ArrayList<Usuario1>();
+    	List<Usuario> lista = new ArrayList<Usuario>();
     	
-    	Usuario1 obj = null;
-    	obj = new Usuario1(1, "Ricardo", "Linares", "rlinareslivia@gmail.com", "11111",Perfil.ADMINISTRADOR);
+    	Usuario obj = null;
+    	obj = new Usuario(1, "Ricardo", "Linares", "rlinareslivia@gmail.com", "11111",Perfil.ADMINISTRADOR);
     	lista.add(obj);
-    	obj = new Usuario1(2, "Ronald", "Quilca", "rquilca@gmail.com", "22222",Perfil.USUARIO);
+    	obj = new Usuario(2, "Ronald", "Linares", "rquilca@gmail.com", "22222",Perfil.USUARIO);
     	lista.add(obj);
-    	obj = new Usuario1(3, "Yovani", "Cueva", "yovanicueva@gmail.com", "33333",Perfil.USUARIO);
+    	obj = new Usuario(3, "Yovani", "Cueva", "yovanicueva@gmail.com", "33333",Perfil.USUARIO);
     	lista.add(obj);
     	
     	return lista;
