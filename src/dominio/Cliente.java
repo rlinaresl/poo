@@ -2,7 +2,15 @@ package dominio;
 
 public class Cliente {
 	/* Cliente */
-
+	@Override
+	public String toString() {
+		return "" + codigo + "," + nombres
+				+ ", " + nombres + ", "
+				+ apellidos + ", " + numeroDocumento + ", " + telefono
+				+ ", " + correo + ", " + estado + ", "
+				+ direccion + "";
+	}
+	
 	private String codigo = "";
 	private String nombres = "";
 	private String apellidos = "";
