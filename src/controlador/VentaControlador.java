@@ -114,8 +114,16 @@ public class VentaControlador {
 		throw new BusinessException(mensaje);
 		
     }	
+	
+	public int eliminarVentaCabe(OperacionCabecera obj)
+	{
 		
-	public int updateVentaCabe(OperacionCabecera obj)
+				
+		return 1;
+		
+	}
+	
+	public int editarVentaCabe(OperacionCabecera obj)
 	{
 		
 				
