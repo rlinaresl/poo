@@ -100,15 +100,18 @@ public class GrupoEstudio {
 		this.estado = estado;
 	}
 
-	public String DarAltaGrupoEstudio() {
-		if(this.getNombre()=="") return "ERROR, al menos ingrese el nombre del grupo.";
-		else if(this.getFechainicio()=="00/00/0000") return "ERROR, al menos ingrese la fecha de inicio del grupo.";
-		else if(this.getFechafin()=="00/00/0000") return "ERROR, al menos ingrese la fecha de inicio del grupo.";
+	public int DarAltaGrupoEstudio() throws BusinessException {
+		String mensaje = "";
+		int estado = 0;
+		if(this.getNombre()=="") mensaje = "ERROR, al menos ingrese el nombre del grupo.";
+		else if(this.getFechainicio()=="00/00/0000") mensaje = "ERROR, al menos ingrese la fecha de inicio del grupo.";
+		else if(this.getFechafin()=="00/00/0000") mensaje = "ERROR, al menos ingrese la fecha de inicio del grupo.";
 		else
 		{
 			this.setEstado("EN CURSO");
-			return "OK";
+			estado = 1;
 		}
+		return estado;
 	}
 	public int buscarGrupoEstudio(String termino) {
 		int cantidad = 0;

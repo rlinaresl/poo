@@ -2,6 +2,8 @@ package testDominio;
 
 import static org.junit.Assert.*;
 import org.junit.Test;
+
+import dominio.BusinessException;
 import dominio.GrupoEstudio;
 
 public class GrupoEstudioTest {
@@ -13,10 +15,62 @@ public class GrupoEstudioTest {
 		g.setNombre("The Hackers");
 		g.setFechainicio("01/01/2012");
 		g.setFechafin("01/01/2012");
-		String mensajeAlta;
-		mensajeAlta = g.DarAltaGrupoEstudio();
+		int mensajeAlta = 0;
+		try {
+			mensajeAlta = g.DarAltaGrupoEstudio();
+		} catch (BusinessException e) {
+			e.printStackTrace();
+		}
 		System.out.println("El estado de la Alta del Grupo de Estudio es: " + mensajeAlta);
-		assertEquals("OK", mensajeAlta);
+		assertEquals(1, mensajeAlta);
+	}
+
+	@Test
+	public void testDarAltaGrupoEstudioErrorNombre()
+	{
+		GrupoEstudio g = new GrupoEstudio();
+		g.setFechainicio("01/01/2012");
+		g.setFechafin("01/01/2012");
+		int mensajeAlta = 0;
+		try {
+			mensajeAlta = g.DarAltaGrupoEstudio();
+		} catch (BusinessException e) {
+			e.printStackTrace();
+		}
+		System.out.println("El estado de la Alta del Grupo de Estudio es: " + mensajeAlta);
+		assertEquals(1, mensajeAlta);
+	}
+	
+	@Test
+	public void testDarAltaGrupoEstudioErrorFechaInicio()
+	{
+		GrupoEstudio g = new GrupoEstudio();
+		g.setNombre("The Hackers");
+		g.setFechafin("01/01/2012");
+		int mensajeAlta = 0;
+		try {
+			mensajeAlta = g.DarAltaGrupoEstudio();
+		} catch (BusinessException e) {
+			e.printStackTrace();
+		}
+		System.out.println("El estado de la Alta del Grupo de Estudio es: " + mensajeAlta);
+		assertEquals(1, mensajeAlta);
+	}
+	
+	@Test
+	public void testDarAltaGrupoEstudioErrorFechaFin()
+	{
+		GrupoEstudio g = new GrupoEstudio();
+		g.setNombre("The Hackers");
+		g.setFechainicio("01/01/2012");
+		int mensajeAlta = 0;
+		try {
+			mensajeAlta = g.DarAltaGrupoEstudio();
+		} catch (BusinessException e) {
+			e.printStackTrace();
+		}
+		System.out.println("El estado de la Alta del Grupo de Estudio es: " + mensajeAlta);
+		assertEquals(1, mensajeAlta);
 	}
 
 	@Test
