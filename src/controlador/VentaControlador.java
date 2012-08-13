@@ -30,8 +30,14 @@ public class VentaControlador {
 	public static void main(String args[])	
 	{
 				
-		Date resultado = Util.getFecha("13/08/2012");
-		System.out.println(resultado);
+		//Date resultado = Util.getFecha("13/08/2012");
+		//System.out.println(resultado);
+		
+		OperacionCabecera venta = new OperacionCabecera();
+		venta.setCodigo(4);
+		VentaControlador dao = new VentaControlador();
+		boolean resultado = dao.buscarVenta(venta);
+		
 				
 		//VentaControlador ventaC = new VentaControlador();
 		
@@ -148,7 +154,7 @@ public class VentaControlador {
 		return 1;		
 	}
 	
-	public int crearVentaCabe(OperacionCabecera obj){
+	public boolean crearVentaCabe(OperacionCabecera obj){
 		
 		ClienteControlador clienteCo = new ClienteControlador();		
         Cliente cli = obj.getCliente();
@@ -156,7 +162,7 @@ public class VentaControlador {
         if(clienteCo.BuscarCliente(cli.getCodigo())==null)//validar cliente
         {
         	System.out.println("Cliente no existe");
-        	return 0;
+        	return false;
         }
         System.out.println("(Ok): " + cli.getNombres() + " " + cli.getApellidos());
         
@@ -166,7 +172,7 @@ public class VentaControlador {
         if (usuarioCo.BuscarUsuario(usu.getCodigo())== null)//validar usuario
         {
         	System.out.println("Usuario no existe");
-        	return 0;
+        	return false;
         }
         System.out.println("(Ok): " + usu.getNombres() + " " + usu.getApellidos());
         
@@ -174,7 +180,7 @@ public class VentaControlador {
 		if (obj.getFecha_emision() == null || !util.isFechaValida(obj.getFecha_emision().toString()))//validar fecha emision 
 		{
         	System.out.println("Fecha de emision incorrecta: "+ obj.getFecha_emision());
-        	return 0;
+        	return false;
         }
 		
 		if (obj.getFechaPago() == null || !util.isFechaValida(obj.getFechaPago().toString()))//validar fecha pago
@@ -186,34 +192,35 @@ public class VentaControlador {
 		if (obj.getFechaVencimiento() == null || !util.isFechaValida(obj.getFechaVencimiento().toString()))//validar fecha vencimiento 
 		{
         	System.out.println("Fecha de Vencimiento incorrecta");
-        	return 0;
+        	return false;
         }
 		
 		if (obj.getCodigoTipoDocumento() != 1)//Si no es una venta
 		{
         	System.out.println("No es una Venta");
-        	return 0;
+        	return false;
         }
 		
 		if (buscarVenta(obj))//valida por codigo y numero de documento.
 		{
         	System.out.println("Venta ya existe");
-        	return 0;
+        	return false;
         }
 		
 		if (obj.getOperacionDetalle() == null)
 		{
         	System.out.println("Ingrese detalle");
-        	return 0;
+        	return false;
         }
 		
 		if (obj.getOperacionDetalle().getConcepto() == null || obj.getOperacionDetalle().getConcepto().equals(""))
 		{
         	System.out.println("Ingrese concepto");
-        	return 0;
+        	return false;
         }		
+		
 		System.out.println("Resultado(OK): Venta (" + obj.getNumeroDocumento() + ") registrada correctamente.");
-		return 1;	
+		return true;	
 		
 	}
 		
@@ -223,9 +230,9 @@ public class VentaControlador {
 		
 		List<OperacionCabecera> listaVentas = BD.devolverOperacion();
 		
-		for (OperacionCabecera item : listaVentas) {
+		for (OperacionCabecera item : listaVentas) {			
 			
-			if (venta.getCodigo() != 0 && item.getCodigo() == venta.getCodigo())
+			if (item.getCodigo() == venta.getCodigo())
             	return true;
 			
 			if (venta.getNumeroDocumento() != null && item.getNumeroDocumento().equalsIgnoreCase(venta.getNumeroDocumento()))
@@ -319,6 +326,69 @@ public class VentaControlador {
         
         return null;
         
+	}
+	
+	public int rptVentasPagadas()
+	{
+		
+		List<OperacionCabecera> listaVentas = BD.devolverOperacion();
+		int i = 0;
+		int contador = 0;
+		
+		for (OperacionCabecera item : listaVentas) 
+		{
+			
+            if (item.getEstado().equals(Estado.CANCELADA))
+            {
+            	i = 1;
+            	System.out.println("---------------------------------------------------");
+            	System.out.println("Nro Doc: " + item.getNumeroDocumento());
+            	System.out.println("Cliente: " + item.getCliente().getApellidos() + " " + item.getCliente().getNombres().toUpperCase());
+            	System.out.println("Fecha Pago: " + item.getFechaPago());
+            	System.out.println("Total: " + item.getOperacionDetalle().getTotal());
+            	contador ++;
+            }
+            
+        }		
+		System.out.println("Registros: " + contador);
+        
+        return i;
+	}
+	
+	public int rptVentasXFechas(Date f1, Date f2)
+	{
+		
+		
+		List<OperacionCabecera> listaVentas = BD.devolverOperacion();
+		int i = 0;
+		int contador = 0;
+		
+		//System.out.println(f1 + " " + f2);
+		
+		for (OperacionCabecera item : listaVentas) 
+		{
+			
+            if (Util.getRangoFechas(item.getFecha_emision(), f1, f2) == 1)
+            {
+            	i = 1;
+            	System.out.println("---------------------------------------------------");
+            	System.out.println("Nro Doc: " + item.getNumeroDocumento());
+            	System.out.println("Cliente: " + item.getCliente().getApellidos() + " " + item.getCliente().getNombres().toUpperCase());
+            	System.out.println("Fecha Emision: " + item.getFecha_emision());
+            	System.out.println("Total: " + item.getOperacionDetalle().getTotal());
+            	contador ++;
+            }
+            
+        }		
+		
+		System.out.println("Registros: " + contador);
+		
+		return i;
+		
+		
+		
+		
+		
 	}
 	
 	
