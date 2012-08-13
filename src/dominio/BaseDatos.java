@@ -26,13 +26,13 @@ public class BaseDatos {
         Usuario usu = usuarioCo.BuscarUsuario(1);    
         
         Date fechaVencimiento = Util.getFecha("10/08/2012");
-        Date fechaPago = Util.getFecha("10/10/2012");        
-        Date fechaEmision = Util.getFecha("10/09/2012");  
+        Date fechaPago = Util.getFecha("08/08/2012");        
+        Date fechaEmision = Util.getFecha("28/07/2012");  
         
         ventaDeta = new OperacionDetalle("servicio de hosting", 410, 1, 90, 500);
         
         ventaCabe = new OperacionCabecera();        
-        ventaCabe = new OperacionCabecera(1, 1, cli, 1, TipoOperacion.VENTA, usu, "IN00001", fechaEmision, "",fechaVencimiento, fechaPago, Estado.CANCELADA, ventaDeta);
+        ventaCabe = new OperacionCabecera(1, 1, cli, 1, TipoOperacion.VENTA, usu, "IN00001", fechaEmision, "",fechaVencimiento, fechaPago, Estado.NUEVO, ventaDeta);
         
         lista.add(ventaCabe);
         

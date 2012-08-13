@@ -13,7 +13,7 @@ public class OperacionCabecera {
 	public enum TipoOperacion
 	{
 		VENTA, COMPRA
-	}	
+	}
 	
 	private int codigo;
 	private int codigoTipoDocumento;//1=dni, 2=ruc
