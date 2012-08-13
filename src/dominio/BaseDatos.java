@@ -70,7 +70,7 @@ public class BaseDatos {
     	Cliente obj = null;
     	obj = new Cliente("0610428", "Luis", "Perez", 3, 1, "02145252", "5642012", "luisperez@gmail.com", "Av. La Paz 586", "Lima", "1", "Perú");
     	lista.add(obj);
-    	obj = new Cliente("0610429", "carla", "Medina", 3, 1, "02145262", "5622010", "carlamedina@gmail.com", "Av. Larco 144", "Lima", "1", "Perú");
+    	obj = new Cliente("0610429", "Carla", "Medina", 3, 1, "02145262", "5622010", "carlamedina@gmail.com", "Av. Larco 144", "Lima", "1", "Perú");
     	lista.add(obj);
     	obj = new Cliente("0610430", "Juan", "Caceres", 3, 1, "02145272", "5552012", "juancaceres@gmail.com", "Av. La Mar 255", "Lima", "1", "Perú");
     	lista.add(obj);
@@ -90,7 +90,7 @@ public List<Usuario> devolverUsuarios(){
     	Usuario obj = null;
     	obj = new Usuario(1, "Ricardo", "Linares", "rlinareslivia@gmail.com", "11111",Perfil.ADMINISTRADOR);
     	lista.add(obj);
-    	obj = new Usuario(2, "Ronald", "Linares", "rquilca@gmail.com", "22222",Perfil.USUARIO);
+    	obj = new Usuario(2, "Ronald", "Quilca", "rquilca@gmail.com", "22222",Perfil.USUARIO);
     	lista.add(obj);
     	obj = new Usuario(3, "Yovani", "Cueva", "yovanicueva@gmail.com", "33333",Perfil.USUARIO);
     	lista.add(obj);

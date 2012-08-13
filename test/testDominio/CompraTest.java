@@ -21,81 +21,117 @@ public class CompraTest {
     public void crearCompraTest() {        
         
 		ClienteControlador clienteCo = new ClienteControlador();
-        Cliente cli = clienteCo.BuscarCliente("0610430");
+        Cliente cli = clienteCo.BuscarCliente("0610429");
         
         UsuarioControlador usuarioCo = new UsuarioControlador();
-        Usuario usu = usuarioCo.BuscarUsuario(1);        
+        Usuario usu = usuarioCo.BuscarUsuario(3);        
         
         OperacionCabecera compraCabe = null;
-        Date fechaVencimiento = Util.getFecha("10/08/2012");
-        Date fechaPago = Util.getFecha("10/10/2012");        
-        Date fechaEmision = Util.getFecha("10/09/2012");               
-                        
+        Date fechaVencimiento = Util.getFecha("18/08/2012");
+        //Date fechaPago = Util.getFecha("10/10/2012");        
+        Date fechaEmision = Util.getFecha("14/08/2012");               
+        
         OperacionDetalle compraDeta = null;
         
         compraDeta = new OperacionDetalle("servicio de hosting", 410, 1, 90, 500);        
-        compraCabe = new OperacionCabecera(4, 1, cli, 1, TipoOperacion.COMPRA, usu, "IN00001", fechaEmision, "",fechaVencimiento, fechaPago, Estado.NUEVO, compraDeta);
+        compraCabe = new OperacionCabecera(5, 1, cli, 1, TipoOperacion.COMPRA, usu, "VE00005", fechaEmision, "",fechaVencimiento, null, Estado.NUEVO, compraDeta);
         
         CompraControlador compraCo = new CompraControlador();
         int resultado = compraCo.crearCompraCabe(compraCabe);
         
-        assertEquals(1, resultado, 0);
+        assertEquals(1, resultado, 1);
 
     }
 	
+	
 	@Test
-    public void updateCompraTest() {                		
+    public void editarCompraTest() {                		
+		
+		CompraControlador compra = new CompraControlador();
+		OperacionCabecera obj = compra.buscarCompra(1);
+		Date fechaVencimiento = Util.getFecha("18/08/2012");
+		obj.setFechaVencimiento(fechaVencimiento);
+		int resultado = 0;
+		try {
+			resultado = compra.editarCompraCabe(obj);
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		assertEquals(1, resultado, 1);
 		
     }
 	
 	@Test
     public void eliminarCompraTest() {                		
 		
+		
     }
 	
+	
 	@Test
-	public void cambiarEstadoCompratest() {
-		
+	public void cambiarEstadoCompraTest()
+	{
 		CompraControlador compraCo = new CompraControlador();
-		OperacionCabecera compra = compraCo.buscarCompra(1);		
-		boolean resultado = compraCo.cambiarEstadoCompra(compra);
-		assertTrue("No existe la Compra", resultado);
+		OperacionCabecera compra = compraCo.buscarCompra(1);
+		
+		//Si la compra va ser pagada.
+		//Date fechaPago = Util.getFecha("13/08/2012");		
+		//c.setFechaPago(fechaPago);
+		
+		compra.setEstado(Estado.CANCELADA);
+		
+		boolean resultado = false;
+		
+		try {
+			resultado = compraCo.cambiarEstadoCompra(compra);
+			System.out.println("Compra Actualizada Correctamente");
+		} catch (Exception e) {
+			// TODO: handle exception
+			System.out.println(e.getMessage());
+		}
+		
+		assertTrue(resultado);
 	}
 	
 	@Test
-	public void buscarCompraCodigoTest() {
+	public void buscarCompraCodigoTest()
+	{
 			
 		CompraControlador compraCo = new CompraControlador();
 		OperacionCabecera compra = new OperacionCabecera();
 		compra.setCodigo(1);
 		
-		boolean resultado = compraCo.buscarCompraCodigo(compra);
+		boolean resultado = compraCo.buscarCompra(compra);
 		assertTrue("No existe la Compra", resultado);
 		
 	}
 	
 	@Test
-	public void buscarCompraClienteTest() {
+	public void buscarCompraClienteTest()
+	{
 			
 		CompraControlador compraCo = new CompraControlador();
 		ClienteControlador clienteCo = new ClienteControlador();
-        Cliente cli = clienteCo.BuscarCliente("0610430");
+        Cliente cli = clienteCo.BuscarCliente("0610429");
         
+		
 		boolean resultado = compraCo.buscarCompraCliente(cli);
 		assertTrue("No existe la Compra", resultado);
 		
 	}
 	
 	@Test
-	public void buscarCompraUsuarioTest() {
+	public void buscarCompraUsuarioTest()
+	{
 			
 		CompraControlador compraCo = new CompraControlador();
 		UsuarioControlador usuarioCo = new UsuarioControlador();
-        Usuario usu = usuarioCo.BuscarUsuario(1);
+        Usuario usu = usuarioCo.BuscarUsuario(3);
 		
 		boolean resultado = compraCo.buscarCompraUsuario(usu);
 		assertTrue("No existe la Compra", resultado);
 		
 	}
+	
 	
 }
