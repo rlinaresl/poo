@@ -113,30 +113,34 @@ public class Usuario {
 	}
 
 	public int BuscarUsuario(String campo, String termino) {
-			
 		
-			List<Usuario> lista =  BD.devolverUsuarios();
-			int contador = 0;
+		
+		List<Usuario> lista =  BD.devolverUsuarios();
+		int contador = 0;
+		
+		for (Usuario item:lista)
+		{
+			if (campo=="codigo" && item.getCodigo()==Integer.parseInt(termino)){
+				System.out.println("Usuarios encontrado:" +item.getApellidos()+" "+item.getNombres());
+				contador ++;
+			}
 			
-			for (Usuario item:lista)
-			{
-				
-				if (campo=="apellido" && item.getApellidos().indexOf(termino) > -1){
-					System.out.println("Usuarios encontrado:" +item.getApellidos()+item.getNombres());
-					contador ++;
-				}
-				
-				if (campo=="nombre" && item.getNombres().contentEquals(termino)){					
-					System.out.println("Usuario encontrado: "+item.getNombres()+" "+item.getApellidos());
-					contador ++;
-				}
-				
-			}						
+			if (campo=="apellido" && item.getApellidos().indexOf(termino) > -1){
+				System.out.println("Usuarios encontrado:" +item.getApellidos()+" "+item.getNombres());
+				contador ++;
+			}
+			
+			if (campo=="nombre" && item.getNombres().contentEquals(termino)){					
+				System.out.println("Usuario encontrado: "+item.getNombres()+" "+item.getApellidos());
+				contador ++;
+			}
+			
+		}						
 
-		return contador;
-		
-		
-	}
+	return contador;
+	
+	
+}
 	
 	public boolean EliminarUsuario(int codigo) {
 		
@@ -158,12 +162,13 @@ public class Usuario {
 	
 	public boolean EditarUsuario(Usuario obj){
 		List<Usuario> lista =BD.devolverUsuarios();
+		
 		for(int i=0; i<lista.size(); i++)
 		{
 			
 			if (lista.get(i).getCodigo()==obj.getCodigo()){
 				Usuario u = new Usuario(obj.getCodigo(), obj.getNombres(),obj.getApellidos(),obj.getCorreo(),obj.getClave(),obj.getPerfil());				
-				System.out.println("Usuario Editado  ");
+				System.out.println("Usuario Editado  "+u.getApellidos()+" "+u.getNombres());
 				return true ;
 			}
 			

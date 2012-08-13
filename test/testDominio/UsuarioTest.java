@@ -78,5 +78,25 @@ public class UsuarioTest {
 		
 		
 	}
+	@Test
+	public void TestEditarUsuario(){
+		
+		Usuario obj=new Usuario();
+		//boolean codigo1=obj.EditarUsuario(obj);
+		obj.setCodigo(2);
+		obj.setNombres("Ronald");
+		obj.setApellidos("Quilca");
+		obj.setCorreo("rquilca@gmail.com");
+		obj.setClave("4444");
+		obj.setPerfil(Perfil.ADMINISTRADOR);
+		boolean variable=obj.EditarUsuario(obj);
+		System.out.println("Usuario editado: "+variable);
+		assertEquals(true,variable);
+		
+		
+	}
+	
+	
+	
 	
 }
