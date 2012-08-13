@@ -126,7 +126,7 @@ public class CompraTest {
 			
 		CompraControlador compraCo = new CompraControlador();
 		UsuarioControlador usuarioCo = new UsuarioControlador();
-        Usuario usu = usuarioCo.BuscarUsuario(3);
+        Usuario usu = usuarioCo.BuscarUsuario(2);
 		
 		boolean resultado = compraCo.buscarCompraUsuario(usu);
 		assertTrue("No existe la Compra", resultado);
