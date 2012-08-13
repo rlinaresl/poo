@@ -1,7 +1,7 @@
 package dominio;
 
 public class Cliente {
-	/* Cliente */
+	/*** Cliente ***/
 	@Override
 	public String toString() {
 		return "" + codigo + "," + nombres
