@@ -1,7 +1,9 @@
 package controlador;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -9,6 +11,7 @@ import java.util.logging.Logger;
 import javax.xml.bind.ParseConversionEvent;
 
 import dominio.Cliente;
+import dominio.OperacionCabecera.TipoOperacion;
 import dominio.Util;
 import dominio.BaseDatos;
 import dominio.OperacionCabecera;
@@ -24,15 +27,20 @@ public class VentaControlador {
 	BaseDatos BD = new BaseDatos();
 	
 	
-	public static void main(String args[])
-	
+	public static void main(String args[])	
 	{
+				
+		Date resultado = Util.getFecha("13/08/2012");
+		System.out.println(resultado);
+				
 		//VentaControlador ventaC = new VentaControlador();
 		
+		/*
 		VentaControlador ventaCo = new VentaControlador();
 		OperacionCabecera venta = ventaCo.buscarVenta(1);		
 		boolean resultado = ventaCo.cambiarEstadoVenta(venta);
 		System.out.println(resultado);
+		*/
 		
 		/*
 		try {
@@ -71,12 +79,14 @@ public class VentaControlador {
         Date fechaEmision = Util.getFecha("10/10/2012");               
         
         ventaDeta = new OperacionDetalle("servicio de hosting", 410, 1, 90, 500);
-        ventaCabe = new OperacionCabecera(1, 1, cli, 1, 1, usu, "IN00001", fechaEmision, "",fechaVencimiento, fechaPago, 1, ventaDeta);
+        //ventaCabe = new OperacionCabecera(1, 1, cli, 1, 1, usu, "IN00001", fechaEmision, "",fechaVencimiento, fechaPago, 1, ventaDeta);
+        ventaCabe = new OperacionCabecera(4, 1, cli, 1, TipoOperacion.VENTA, usu, "IN00001", fechaEmision, "",fechaVencimiento, fechaPago, Estado.NUEVO, ventaDeta);
         
         VentaControlador ventaCo = new VentaControlador();
         int resultado = ventaCo.crearVentaCabe(ventaCabe);
         System.out.print(resultado);
         */
+        
 	}
 	
 	
@@ -115,40 +125,52 @@ public class VentaControlador {
 		
     }	
 	
-	public int eliminarVentaCabe(OperacionCabecera obj)
-	{
+	public int eliminarVentaCabe(OperacionCabecera obj)  throws BusinessException
+	{					
+		if (verificarEstado(obj))
+			return 1;
 		
-				
-		return 1;
-		
+		return 0;
 	}
 	
-	public int editarVentaCabe(OperacionCabecera obj)
+	public int editarVentaCabe(OperacionCabecera obj) throws BusinessException
 	{
-		
+		OperacionCabecera v = buscarVenta(obj.getCodigo());
 				
-		return 1;
+		int validaFecha = Util.getComparaFechas(obj.getFechaVencimiento(), v.getFechaVencimiento());
 		
+		if (validaFecha == 0)
+    		throw new BusinessException("Error: La nueva fecha de vencimiento es incorrecta");
+		
+		if (!verificarEstado(obj))
+    		throw new BusinessException("Error: La venta no puede ser actualizada");
+		
+		return 1;		
 	}
 	
 	public int crearVentaCabe(OperacionCabecera obj){
 		
 		ClienteControlador clienteCo = new ClienteControlador();		
         Cliente cli = obj.getCliente();
+        System.out.print("Busqueda de Cliente ");
         if(clienteCo.BuscarCliente(cli.getCodigo())==null)//validar cliente
         {
         	System.out.println("Cliente no existe");
         	return 0;
         }
+        System.out.println("(Ok): " + cli.getNombres() + " " + cli.getApellidos());
         
         UsuarioControlador usuarioCo = new UsuarioControlador();
         Usuario usu = obj.getUsuario();
+        System.out.print("Busqueda de Usuario ");
         if (usuarioCo.BuscarUsuario(usu.getCodigo())== null)//validar usuario
         {
         	System.out.println("Usuario no existe");
         	return 0;
         }
-		
+        System.out.println("(Ok): " + usu.getNombres() + " " + usu.getApellidos());
+        
+        System.out.print("Observaciones: ");
 		if (obj.getFecha_emision() == null || !util.isFechaValida(obj.getFecha_emision().toString()))//validar fecha emision 
 		{
         	System.out.println("Fecha de emision incorrecta: "+ obj.getFecha_emision());
@@ -157,8 +179,8 @@ public class VentaControlador {
 		
 		if (obj.getFechaPago() == null || !util.isFechaValida(obj.getFechaPago().toString()))//validar fecha pago
 		{
-        	System.out.println("Fecha de Pago incorrecta");
-        	return 0;
+        	System.out.println("No ingreso fecha de Pago");
+        	//return 0;
         }
 		
 		if (obj.getFechaVencimiento() == null || !util.isFechaValida(obj.getFechaVencimiento().toString()))//validar fecha vencimiento 
@@ -173,7 +195,7 @@ public class VentaControlador {
         	return 0;
         }
 		
-		if (buscarVentaCodigo(obj))//Si la venta existe
+		if (buscarVenta(obj))//valida por codigo y numero de documento.
 		{
         	System.out.println("Venta ya existe");
         	return 0;
@@ -189,22 +211,26 @@ public class VentaControlador {
 		{
         	System.out.println("Ingrese concepto");
         	return 0;
-        }
-					
+        }		
+		System.out.println("Resultado(OK): Venta (" + obj.getNumeroDocumento() + ") registrada correctamente.");
 		return 1;	
 		
 	}
 		
 	
-	public boolean buscarVentaCodigo(OperacionCabecera venta)
+	public boolean buscarVenta(OperacionCabecera venta)
 	{
 		
 		List<OperacionCabecera> listaVentas = BD.devolverOperacion();
 		
 		for (OperacionCabecera item : listaVentas) {
 			
-            if (item.getCodigo() == venta.getCodigo())
+			if (venta.getCodigo() != 0 && item.getCodigo() == venta.getCodigo())
             	return true;
+			
+			if (venta.getNumeroDocumento() != null && item.getNumeroDocumento().equalsIgnoreCase(venta.getNumeroDocumento()))
+            	return true;
+            
         }
         
         return false;
@@ -240,21 +266,44 @@ public class VentaControlador {
         return false;
 	}
 	
-	
-	public boolean cambiarEstadoVenta(OperacionCabecera venta)
+	public boolean verificarEstado(OperacionCabecera item) throws BusinessException
 	{
-		List<OperacionCabecera> listaVentas = BD.devolverOperacion();
 		
-		for (OperacionCabecera item : listaVentas) {
+		if (item.getEstado().equals(Estado.CANCELADA))
+    		throw new BusinessException("Error: La venta ya ha sido cancelada");
+    	
+    	if (item.getEstado().equals(Estado.ANULADA))
+    		throw new BusinessException("Error: La venta ya ha sido Anulada");
+		
+		return true;
+		
+	}
+	
+	
+	public boolean cambiarEstadoVenta(OperacionCabecera venta) throws BusinessException
+	{
+				
+		OperacionCabecera item = buscarVenta(venta.getCodigo());
+		
+		if (item == null)
+			throw new BusinessException("Error: No se encontro la venta");
 			
-            if (item.getCodigo() == venta.getCodigo())
-            {
-            	if (item.getEstado().equals(Estado.CANCELADA))
-            		return true;
-            }            	
-        }
-        
-        return false;
+		/*
+		if (Util.getValidaFechaActual("13/08/2012")==0)//validar fecha pago        		
+			throw new BusinessException("Error: Fecha de Pago incorrecta");
+    	*/
+		
+    	if (item.getEstado().equals(Estado.CANCELADA))
+    		throw new BusinessException("Error: La venta ya ha sido cancelada");
+    	
+    	if (item.getEstado().equals(Estado.ANULADA))
+    		throw new BusinessException("Error: La venta ya ha sido Anulada");
+    	
+    	if (!venta.getEstado().equals(Estado.CANCELADA))
+    		throw new BusinessException("Error: La venta no puede ser actualizada");
+
+    	return true;
+	
 	}
 	
 	public OperacionCabecera buscarVenta(int codigo)

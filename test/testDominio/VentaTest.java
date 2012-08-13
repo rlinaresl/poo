@@ -27,28 +27,38 @@ public class VentaTest {
         Usuario usu = usuarioCo.BuscarUsuario(1);        
         
         OperacionCabecera ventaCabe = null;
-        Date fechaVencimiento = Util.getFecha("10/08/2012");
-        Date fechaPago = Util.getFecha("10/10/2012");        
-        Date fechaEmision = Util.getFecha("10/09/2012");               
+        Date fechaVencimiento = Util.getFecha("18/08/2012");
+        //Date fechaPago = Util.getFecha("10/10/2012");        
+        Date fechaEmision = Util.getFecha("14/08/2012");               
         
                 
         OperacionDetalle ventaDeta = null;
         
         ventaDeta = new OperacionDetalle("servicio de hosting", 410, 1, 90, 500);        
-        ventaCabe = new OperacionCabecera(4, 1, cli, 1, TipoOperacion.VENTA, usu, "IN00001", fechaEmision, "",fechaVencimiento, fechaPago, Estado.NUEVO, ventaDeta);
+        ventaCabe = new OperacionCabecera(4, 1, cli, 1, TipoOperacion.VENTA, usu, "IN00002", fechaEmision, "",fechaVencimiento, null, Estado.NUEVO, ventaDeta);
         
         VentaControlador ventaCo = new VentaControlador();
         int resultado = ventaCo.crearVentaCabe(ventaCabe);
         
-        assertEquals(1, resultado, 0);
+        assertEquals(1, resultado, 1);
 
     }
 	
 	
 	@Test
-    public void updateVentaTest() {                		
+    public void editarVentaTest() {                		
 		
-		
+		VentaControlador venta = new VentaControlador();
+		OperacionCabecera obj = venta.buscarVenta(1);
+		Date fechaVencimiento = Util.getFecha("18/08/2012");
+		obj.setFechaVencimiento(fechaVencimiento);
+		int resultado = 0;
+		try {
+			resultado = venta.editarVentaCabe(obj);
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		assertEquals(1, resultado, 1);
 		
     }
 	
@@ -64,9 +74,25 @@ public class VentaTest {
 	public void cambiarEstadoVentatest()
 	{
 		VentaControlador ventaCo = new VentaControlador();
-		OperacionCabecera venta = ventaCo.buscarVenta(1);		
-		boolean resultado = ventaCo.cambiarEstadoVenta(venta);
-		assertTrue("No existe la Venta", resultado);
+		OperacionCabecera venta = ventaCo.buscarVenta(1);
+		
+		//Si la venta va ser pagada.
+		//Date fechaPago = Util.getFecha("13/08/2012");		
+		//venta.setFechaPago(fechaPago);
+		
+		venta.setEstado(Estado.CANCELADA);
+		
+		boolean resultado = false;
+		
+		try {
+			resultado = ventaCo.cambiarEstadoVenta(venta);
+			System.out.println("Venta Actualizada Correctamente");
+		} catch (Exception e) {
+			// TODO: handle exception
+			System.out.println(e.getMessage());
+		}
+		
+		assertTrue(resultado);
 	}
 	
 	@Test
@@ -77,7 +103,7 @@ public class VentaTest {
 		OperacionCabecera venta = new OperacionCabecera();
 		venta.setCodigo(1);
 		
-		boolean resultado = ventaCo.buscarVentaCodigo(venta);
+		boolean resultado = ventaCo.buscarVenta(venta);
 		assertTrue("No existe la Venta", resultado);
 		
 	}
