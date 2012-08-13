@@ -15,25 +15,68 @@ import dominio.Usuario.Perfil;
 public class BaseDatos {
 
 	public List<OperacionCabecera> devolverOperacion(){
+		
 		List<OperacionCabecera> lista = new ArrayList<OperacionCabecera>();
+		
 		OperacionDetalle ventaDeta = null;
 		OperacionCabecera ventaCabe = null;
-        
+		Date fechaVencimiento = null;
+		Date fechaPago = null;
+		Date fechaEmision = null;
+		        
 		ClienteControlador clienteCo = new ClienteControlador();
+		UsuarioControlador usuarioCo = new UsuarioControlador();
+		
         Cliente cli = clienteCo.BuscarCliente("0610428");
+        Usuario usu = usuarioCo.BuscarUsuario(2);
         
-        UsuarioControlador usuarioCo = new UsuarioControlador();
-        Usuario usu = usuarioCo.BuscarUsuario(1);    
+        fechaEmision = Util.getIsFecha("24/06/2012");
+        fechaVencimiento = Util.getIsFecha("08/07/2012");
+        fechaPago = Util.getIsFecha("05/07/2012");
         
-        Date fechaVencimiento = Util.getFecha("10/08/2012");
-        Date fechaPago = Util.getFecha("08/08/2012");        
-        Date fechaEmision = Util.getFecha("28/07/2012");  
         
-        ventaDeta = new OperacionDetalle("servicio de hosting", 410, 1, 90, 500);
+        ventaDeta = new OperacionDetalle("Inscripcion", 410, 1, 90, 500);                        
+        ventaCabe = new OperacionCabecera(1, 1, cli, 1, TipoOperacion.VENTA, usu, "IN00001", fechaEmision, "",fechaVencimiento, fechaPago, Estado.CANCELADA, ventaDeta);        
+        lista.add(ventaCabe);
         
-        ventaCabe = new OperacionCabecera();        
-        ventaCabe = new OperacionCabecera(1, 1, cli, 1, TipoOperacion.VENTA, usu, "IN00001", fechaEmision, "",fechaVencimiento, fechaPago, Estado.NUEVO, ventaDeta);
+        fechaEmision = Util.getIsFecha("30/06/2012");
+        fechaVencimiento = Util.getIsFecha("10/07/2012");
+        fechaPago = Util.getIsFecha("08/07/2012");        
         
+        ventaDeta = new OperacionDetalle("Matricula", 200, 1, 36, 236);                        
+        ventaCabe = new OperacionCabecera(2, 1, cli, 1, TipoOperacion.VENTA, usu, "IN00002", fechaEmision, "",fechaVencimiento, fechaPago, Estado.CANCELADA, ventaDeta);        
+        lista.add(ventaCabe);
+        
+        fechaEmision = Util.getIsFecha("01/07/2012");
+        fechaVencimiento = Util.getIsFecha("08/07/2012");    
+        fechaPago = null;  
+        //fechaEmision = Util.getFecha("24/06/2012");  
+        
+        ventaDeta = new OperacionDetalle("Mensualidad", 1000, 1, 180, 1180);                        
+        ventaCabe = new OperacionCabecera(3, 1, cli, 1, TipoOperacion.VENTA, usu, "IN00003", fechaEmision, "",fechaVencimiento, fechaPago, Estado.NUEVO, ventaDeta);        
+        lista.add(ventaCabe);
+        
+        fechaEmision = Util.getIsFecha("05/07/2012");
+        fechaVencimiento = Util.getIsFecha("15/07/2012");        
+        //fechaEmision = Util.getFecha("24/06/2012");  
+        
+        ventaDeta = new OperacionDetalle("Libro POO I", 150, 1, 27, 177);
+        ventaCabe = new OperacionCabecera(4, 1, cli, 1, TipoOperacion.VENTA, usu, "IN00004", fechaEmision, "",fechaVencimiento, fechaPago, Estado.NUEVO, ventaDeta);        
+        lista.add(ventaCabe);
+        
+        ventaDeta = new OperacionDetalle("Finalito", 150, 1, 27, 177);                        
+        ventaCabe = new OperacionCabecera(5, 1, cli, 1, TipoOperacion.VENTA, usu, "IN00005", fechaEmision, "",fechaVencimiento, fechaPago, Estado.NUEVO, ventaDeta);        
+        lista.add(ventaCabe);        
+                
+        cli = clienteCo.BuscarCliente("0610430");                
+        usu = usuarioCo.BuscarUsuario(3);
+        
+        fechaEmision = Util.getIsFecha("10/08/2012");
+        fechaVencimiento = Util.getIsFecha("25/08/2012");        
+        fechaPago = Util.getIsFecha("24/08/2012"); 
+        
+        ventaDeta = new OperacionDetalle("Inscripcion", 410, 1, 90, 500);                        
+        ventaCabe = new OperacionCabecera(6, 1, cli, 1, TipoOperacion.VENTA, usu, "IN00006", fechaEmision, "",fechaVencimiento, fechaPago, Estado.NUEVO, ventaDeta);        
         lista.add(ventaCabe);
         
 		return lista;

@@ -35,12 +35,12 @@ public class VentaTest {
         OperacionDetalle ventaDeta = null;
         
         ventaDeta = new OperacionDetalle("servicio de hosting", 410, 1, 90, 500);        
-        ventaCabe = new OperacionCabecera(4, 1, cli, 1, TipoOperacion.VENTA, usu, "IN00002", fechaEmision, "",fechaVencimiento, null, Estado.NUEVO, ventaDeta);
+        ventaCabe = new OperacionCabecera(7, 1, cli, 1, TipoOperacion.VENTA, usu, "IN00002", fechaEmision, "",fechaVencimiento, null, Estado.NUEVO, ventaDeta);
         
         VentaControlador ventaCo = new VentaControlador();
-        int resultado = ventaCo.crearVentaCabe(ventaCabe);
+        boolean resultado = ventaCo.crearVentaCabe(ventaCabe);
         
-        assertEquals(1, resultado, 1);
+        assertTrue(resultado);
 
     }
 	
@@ -65,7 +65,19 @@ public class VentaTest {
 	@Test
     public void eliminarVentaTest() {                		
 		
+		VentaControlador venta = new VentaControlador();
+		OperacionCabecera obj = venta.buscarVenta(1);
 		
+		int resultado = 0;
+		try {
+			resultado = venta.eliminarVentaCabe(obj);
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		
+		System.out.println(resultado);
+		
+		assertEquals(resultado, 0);
 		
     }
 	
@@ -74,7 +86,7 @@ public class VentaTest {
 	public void cambiarEstadoVentatest()
 	{
 		VentaControlador ventaCo = new VentaControlador();
-		OperacionCabecera venta = ventaCo.buscarVenta(1);
+		OperacionCabecera venta = ventaCo.buscarVenta(5);
 		
 		//Si la venta va ser pagada.
 		//Date fechaPago = Util.getFecha("13/08/2012");		
@@ -95,6 +107,7 @@ public class VentaTest {
 		assertTrue(resultado);
 	}
 	
+	
 	@Test
 	public void buscarVentaCodigoTest()
 	{
@@ -106,8 +119,27 @@ public class VentaTest {
 		boolean resultado = ventaCo.buscarVenta(venta);
 		assertTrue("No existe la Venta", resultado);
 		
-	}
+	}	
 	
+	@Test
+	public void rptVentasXFechasEmisionTest()
+	{
+			
+		VentaControlador ventaCo = new VentaControlador();
+		OperacionCabecera venta = new OperacionCabecera();
+		venta.setCodigo(1);
+		
+		Date f1 = Util.getIsFecha("25/06/2012");
+		Date f2 = Util.getIsFecha("01/07/2012");
+		
+		int resultado = ventaCo.rptVentasXFechas(f1, f2);
+		assertEquals(resultado, 1);
+		
+	}	
+	
+	
+	
+	/*
 	@Test
 	public void buscarVentaClienteTest()
 	{
@@ -120,8 +152,10 @@ public class VentaTest {
 		boolean resultado = ventaCo.buscarVentaCliente(cli);
 		assertTrue("No existe la Venta", resultado);
 		
-	}
+	}	
+	*/
 	
+	/*
 	@Test
 	public void buscarVentaUsuarioTest()
 	{
@@ -131,10 +165,9 @@ public class VentaTest {
         Usuario usu = usuarioCo.BuscarUsuario(1);
 		
 		boolean resultado = ventaCo.buscarVentaUsuario(usu);
-		assertTrue("No existe la Venta", resultado);
+		assertEquals(true, resultado, 1);
 		
 	}
-	
-	
+	*/	
 	
 }
