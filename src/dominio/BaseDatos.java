@@ -45,10 +45,10 @@ public class BaseDatos {
 		OperacionCabecera compraCabe = null;
         
 		ClienteControlador clienteCo = new ClienteControlador();
-        Cliente cli = clienteCo.BuscarCliente("0610430");
+        Cliente cli = clienteCo.BuscarCliente("0610429");
         
         UsuarioControlador usuarioCo = new UsuarioControlador();
-        Usuario usu = usuarioCo.BuscarUsuario(1);    
+        Usuario usu = usuarioCo.BuscarUsuario(2); // 1    
         
         Date fechaVencimiento = Util.getFecha("10/08/2012");
         Date fechaPago = Util.getFecha("10/10/2012");        

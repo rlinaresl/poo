@@ -216,7 +216,7 @@ public class CompraControlador {
 	public boolean buscarCompraUsuario(Usuario usuario)
 	{
 		
-		List<OperacionCabecera> listaCompras = BD.devolverOperacion();
+		List<OperacionCabecera> listaCompras = BD.devolverCompra();
 		
 		for (OperacionCabecera item : listaCompras) {
 			
@@ -231,7 +231,7 @@ public class CompraControlador {
 	public boolean buscarCompraCliente(Cliente cliente)
 	{
 		
-		List<OperacionCabecera> listaCompras = BD.devolverOperacion();
+		List<OperacionCabecera> listaCompras = BD.devolverCompra();
 		
 		for (OperacionCabecera item : listaCompras) {
 			
