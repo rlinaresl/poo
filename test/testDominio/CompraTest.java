@@ -64,7 +64,20 @@ public class CompraTest {
 	@Test
     public void eliminarCompraTest() {                		
 		
-		
+		CompraControlador compra = new CompraControlador();
+		OperacionCabecera obj = compra.buscarCompra(1);
+
+		int resultado = 0;
+		try {
+			resultado = compra.eliminarCompraCabe(obj);
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+
+		System.out.println(resultado);
+
+		assertEquals(resultado, 0);
+
     }
 	
 	
@@ -79,6 +92,7 @@ public class CompraTest {
 		//c.setFechaPago(fechaPago);
 		
 		compra.setEstado(Estado.CANCELADA);
+		//compra.setEstado(Estado.NUEVO);
 		
 		boolean resultado = false;
 		
