@@ -198,11 +198,11 @@ public class CompraControlador {
 	public boolean buscarCompra(OperacionCabecera compra)
 	{
 		
-		List<OperacionCabecera> listaCompras = BD.devolverOperacion();
+		List<OperacionCabecera> listaCompras = BD.devolverCompra();
 		
 		for (OperacionCabecera item : listaCompras) {
 			
-			if (compra.getCodigo() != 0 && item.getCodigo() == compra.getCodigo())
+			if (item.getCodigo() == compra.getCodigo())
             	return true;
 			
 			if (compra.getNumeroDocumento() != null && item.getNumeroDocumento().equalsIgnoreCase(compra.getNumeroDocumento()))
@@ -270,8 +270,8 @@ public class CompraControlador {
 			throw new BusinessException("Error: Fecha de Pago incorrecta");
     	*/
 		
-    	if (item.getEstado().equals(Estado.CANCELADA))
-    		throw new BusinessException("Error: La compra ya ha sido cancelada");
+    	//if (item.getEstado().equals(Estado.CANCELADA))
+    	//	throw new BusinessException("Error: La compra ya ha sido cancelada");
     	
     	if (item.getEstado().equals(Estado.ANULADA))
     		throw new BusinessException("Error: La compra ya ha sido Anulada");
@@ -286,7 +286,7 @@ public class CompraControlador {
 	public OperacionCabecera buscarCompra(int codigo)
 	{
 		
-		List<OperacionCabecera> listaCompras = BD.devolverOperacion();
+		List<OperacionCabecera> listaCompras = BD.devolverCompra();
 		
 		for (OperacionCabecera item : listaCompras) {
 			
